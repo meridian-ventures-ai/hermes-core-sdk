@@ -13,7 +13,7 @@ export interface Lead {
     metadata: any;
     createdAt: string;
     updatedAt: string;
-    lead_field_values?: LeadFieldValue[];
+    leadFieldValues?: LeadFieldValue[];
 }
 
 export interface LeadFieldValue {
@@ -32,7 +32,7 @@ export interface LeadField {
     order: number;
     question: string;
     tenantId: string;
-    created_at: string;
+    createdAt: string;
     fieldName: string;
     updatedAt: string;
     fieldDetails: any;
