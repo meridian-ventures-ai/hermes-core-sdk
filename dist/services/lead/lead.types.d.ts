@@ -1,56 +1,56 @@
 import { PaginatedResponse } from "../../shared/types";
 export interface Lead {
     id: string;
-    tenant_id: string;
-    chat_id: string | null;
-    lead_potential: string;
-    profile_completeness: number;
+    tenantId: string;
+    chatId: string | null;
+    leadPotential: string;
+    profileCompleteness: number;
     status: string;
-    lead_score: number;
-    lead_score_breakdown: Record<string, any> | null;
+    leadScore: number;
+    leadScoreBreakdown: Record<string, any> | null;
     metadata: any;
-    created_at: string;
-    updated_at: string;
-    lead_field_values?: LeadFieldValue[];
+    createdAt: string;
+    updatedAt: string;
+    leadFieldValues?: LeadFieldValue[];
 }
 export interface LeadFieldValue {
     id: string;
     value: any;
-    lead_id: string;
-    field_id: string;
-    created_at: string;
-    updated_at: string;
-    lead_fields?: LeadField | null;
+    leadId: string;
+    fieldId: string;
+    createdAt: string;
+    updatedAt: string;
+    leadFields?: LeadField | null;
 }
 export interface LeadField {
     id: string;
     type: string;
     order: number;
     question: string;
-    tenant_id: string;
-    created_at: string;
-    field_name: string;
-    updated_at: string;
-    field_details: any;
+    tenantId: string;
+    createdAt: string;
+    fieldName: string;
+    updatedAt: string;
+    fieldDetails: any;
 }
 export type GetLeadsResponse = PaginatedResponse<Lead>;
 export interface CreateLeadRequest {
-    chat_id: string | null;
-    lead_potential: string;
-    lead_score: number;
-    lead_score_breakdown: Record<string, any> | null;
-    profile_completeness: number;
+    chatId: string | null;
+    leadPotential: string;
+    leadScore: number;
+    leadScoreBreakdown: Record<string, any> | null;
+    profileCompleteness: number;
     status: string;
     metadata: any;
     responses: {
-        field_id: string;
+        fieldId: string;
         value: any;
     }[];
 }
 export interface CreateLeadFieldRequest {
-    field_name: string;
+    fieldName: string;
     question: string;
     type: string;
     order: number;
-    field_details: Record<string, any>;
+    fieldDetails: Record<string, any>;
 }
