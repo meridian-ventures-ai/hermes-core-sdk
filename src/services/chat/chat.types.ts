@@ -3,13 +3,13 @@ import { Lead, LeadField } from "../lead/lead.types";
 
 export interface Chat {
     id: string;
-    tenant_id: string;
-    session_id: string;
-    last_message_at: string | null;
+    tenantId: string;
+    sessionId: string;
+    lastMessageAt: string | null;
     summary: string | null;
     phase: string;
-    created_at: string;
-    updated_at: string;
+    createdAt: string;
+    updatedAt: string;
     lead?: any | null;
 }
 
@@ -17,13 +17,13 @@ export type ChatResponse = PaginatedResponse<Chat>;
 
 export interface ChatWithProfileData {
     id: string;
-    tenant_id: string;
-    session_id: string;
-    last_message_at: string | null;
+    tenantId: string;
+    sessionId: string;
+    lastMessageAt: string | null;
     summary: string | null;
     phase: string;
-    created_at: string;
-    updated_at: string;
+    createdAt: string;
+    updatedAt: string;
     lead: Lead | null;
 }
 
@@ -33,10 +33,9 @@ export interface ChatWithProfileResponse {
     data: ChatWithProfileData;
 }
 
-
 export interface CreateChatRequest {
   id: string;
-  session_id: string;
+  sessionId: string;
   phase: string;
   summary?: string;
 }

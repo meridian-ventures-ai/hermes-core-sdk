@@ -1,39 +1,39 @@
 export interface CreateMessageRequest {
     id?: string | null;
-    chat_id: string;
+    chatId: string;
     role?: string | null;
     content?: string | null;
-    message_type?: string | null;
+    messageType?: string | null;
     metadata?: any | null;
     parts?: any | null;
 }
 
 export interface CreateMessageFeedbackRequest {
-    message_id: string;
-    actor_type?: 'user' | 'system' | 'admin' | 'evaluator'; // default: 'user'
-    feedback_type: 'like' | 'dislike' | 'flag' | 'rating';
+    messageId: string;
+    actorType?: 'user' | 'system' | 'admin' | 'evaluator'; // default: 'user'
+    feedbackType: 'like' | 'dislike' | 'flag' | 'rating';
     comment?: string | null;
 }
 
 
 export interface Message {
     id: string;
-    chat_id: string;
+    chatId: string;
     role: string;
     error?: string | null;
     content: string;
-    message_type: string;
+    messageType: string;
     metadata: any;
     parts: any;
-    created_at: string;
-    updated_at: string;
+    createdAt: string;
+    updatedAt: string;
 }
 
 export interface MessageFeedback {
     id: string;
-    message_id: string;
-    actor_type: 'user' | 'system' | 'admin' | 'evaluator';
-    feedback_type: 'like' | 'dislike' | 'flag' | 'rating';
+    messageId: string;
+    actorType: 'user' | 'system' | 'admin' | 'evaluator';
+    feedbackType: 'like' | 'dislike' | 'flag' | 'rating';
     comment: string | null;
     created_at: string;
     updated_at: string;
