@@ -1,5 +1,5 @@
 import { AxiosInstance } from "axios";
-import { Chat, ChatResponse, ChatWithProfileResponse, CreateChatRequest } from "./chat.types";
+import { Chat, ChatResponse, ChatWithProfileData, CreateChatRequest } from "./chat.types";
 
 
 interface PaginationParams {
@@ -21,7 +21,7 @@ export class ChatService {
     }
 
 
-    async getProfileByChatId(chatId: string): Promise<ChatWithProfileResponse | null> {
+    async getProfileByChatId(chatId: string): Promise<ChatWithProfileData | null> {
         const response = await this.httpClient.get(`/api/v1/chats/profile/${chatId}`);
         return response.data;
     }

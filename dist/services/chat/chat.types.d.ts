@@ -23,11 +23,6 @@ export interface ChatWithProfileData {
     updatedAt: string;
     lead: Lead | null;
 }
-export interface ChatWithProfileResponse {
-    success: boolean;
-    message: string;
-    data: ChatWithProfileData;
-}
 export interface CreateChatRequest {
     id: string;
     sessionId: string;

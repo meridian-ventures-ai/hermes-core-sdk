@@ -51,7 +51,7 @@ class HermesClient {
                 ? `${response.config.baseURL.replace(/\/$/, '')}${response.config.url ?? ''}`
                 : response.config.url;
             console.log(`[HermesClient] Response: ${method} ${url} - Status: ${response.status}`);
-            // ✅ Auto-unwrap: { success, data, message } -> data
+            // Auto-unwrap: { success, data, message } -> data
             if (response.data && typeof response.data === 'object') {
                 // If backend returns { success, data, message }, extract data
                 if ('data' in response.data) {
@@ -81,7 +81,7 @@ class HermesClient {
         if (!response) {
             return new HermesSDKError('Network error: Unable to reach Hermes Core', undefined, 'NETWORK_ERROR');
         }
-        const message = data?.message || data?.error || error.message || 'An error occurred';
+        const message = data?.message || data?.error || error?.message || 'An error occurred';
         return new HermesSDKError(message, response.status, data?.code, data?.details);
     }
 }
