@@ -31,6 +31,5 @@ export interface MessageFeedback {
     actorType: 'user' | 'system' | 'admin' | 'evaluator';
     feedbackType: 'like' | 'dislike' | 'flag' | 'rating';
     comment: string | null;
-    created_at: string;
-    updated_at: string;
+    createdAt: string;
 }
