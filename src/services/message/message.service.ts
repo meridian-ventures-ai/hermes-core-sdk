@@ -5,9 +5,10 @@ import { Message, CreateMessageRequest, CreateMessageFeedbackRequest, MessageFee
 export class MessageService {
     constructor(private httpClient: AxiosInstance) {}
 
-    async getMessages(chatId: string): Promise<Message> {
+    async getMessages(chatId: string): Promise<Message[]> {
         const response = await this.httpClient.get(`/api/v1/messages/${chatId}`);
-        return response.data;
+        const data = response.data;
+        return Array.isArray(data) ? data : [];
     }
 
     async createMessage(message: CreateMessageRequest): Promise<Message> {

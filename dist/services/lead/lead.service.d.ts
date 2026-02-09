@@ -1,12 +1,12 @@
 import { AxiosInstance } from "axios";
-import { PaginationParams } from "../../shared/types";
-import { CreateLeadFieldRequest, CreateLeadRequest, GetLeadsResponse, Lead, LeadField } from "./lead.types";
+import { CreateLeadFieldRequest, CreateLeadRequest, GetLeadsParams, GetLeadsResponse, Lead, LeadField } from "./lead.types";
 export declare class LeadService {
     private httpClient;
     constructor(httpClient: AxiosInstance);
-    getLeads(paginationParams?: PaginationParams): Promise<GetLeadsResponse>;
+    getLeads(params?: GetLeadsParams): Promise<GetLeadsResponse>;
     getLead(leadId: string): Promise<Lead>;
     getLeadFields(): Promise<LeadField[]>;
+    deleteLead(leadId: string): Promise<void>;
     createLead(lead: CreateLeadRequest): Promise<Lead>;
     createLeadField(leadField: CreateLeadFieldRequest): Promise<LeadField>;
 }

@@ -20,4 +20,5 @@ Object.defineProperty(exports, "HermesClient", { enumerable: true, get: function
 __exportStar(require("./services/chat/chat.types"), exports);
 __exportStar(require("./services/lead/lead.types"), exports);
 __exportStar(require("./services/message/message.types"), exports);
+__exportStar(require("./services/analytics/analytics.types"), exports);
 __exportStar(require("./config/sdk-config"), exports);

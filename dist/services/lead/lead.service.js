@@ -5,8 +5,8 @@ class LeadService {
     constructor(httpClient) {
         this.httpClient = httpClient;
     }
-    async getLeads(paginationParams) {
-        const response = await this.httpClient.get('/api/v1/leads', { params: paginationParams });
+    async getLeads(params) {
+        const response = await this.httpClient.get("/api/v1/leads", { params });
         return response.data;
     }
     async getLead(leadId) {
@@ -16,6 +16,9 @@ class LeadService {
     async getLeadFields() {
         const response = await this.httpClient.get('/api/v1/leads/fields');
         return response.data;
+    }
+    async deleteLead(leadId) {
+        await this.httpClient.delete(`/api/v1/leads/${leadId}`);
     }
     async createLead(lead) {
         const response = await this.httpClient.post('/api/v1/leads', lead);

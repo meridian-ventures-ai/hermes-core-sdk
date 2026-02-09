@@ -7,7 +7,8 @@ class MessageService {
     }
     async getMessages(chatId) {
         const response = await this.httpClient.get(`/api/v1/messages/${chatId}`);
-        return response.data;
+        const data = response.data;
+        return Array.isArray(data) ? data : [];
     }
     async createMessage(message) {
         const response = await this.httpClient.post('/api/v1/messages', message);

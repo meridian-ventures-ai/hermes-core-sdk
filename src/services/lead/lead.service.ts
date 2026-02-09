@@ -1,12 +1,18 @@
 import { AxiosInstance } from "axios";
-import { PaginationParams } from "../../shared/types";
-import { CreateLeadFieldRequest, CreateLeadRequest, GetLeadsResponse, Lead, LeadField } from "./lead.types";
+import {
+    CreateLeadFieldRequest,
+    CreateLeadRequest,
+    GetLeadsParams,
+    GetLeadsResponse,
+    Lead,
+    LeadField,
+} from "./lead.types";
 
 export class LeadService {
     constructor(private httpClient: AxiosInstance) {}
 
-    async getLeads(paginationParams?: PaginationParams): Promise<GetLeadsResponse> {
-        const response = await this.httpClient.get('/api/v1/leads', { params: paginationParams });
+    async getLeads(params?: GetLeadsParams): Promise<GetLeadsResponse> {
+        const response = await this.httpClient.get("/api/v1/leads", { params });
         return response.data;
     }
 
@@ -18,6 +24,10 @@ export class LeadService {
     async getLeadFields(): Promise<LeadField[]> {
         const response = await this.httpClient.get('/api/v1/leads/fields');
         return response.data;
+    }
+
+    async deleteLead(leadId: string): Promise<void> {
+        await this.httpClient.delete(`/api/v1/leads/${leadId}`);
     }
 
     async createLead(lead: CreateLeadRequest): Promise<Lead> {
