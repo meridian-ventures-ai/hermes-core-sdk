@@ -9,7 +9,6 @@ const lead_service_1 = require("../services/lead/lead.service");
 const message_service_1 = require("../services/message/message.service");
 const chat_service_1 = require("../services/chat/chat.service");
 const analytics_service_1 = require("../services/analytics/analytics.service");
-const summary_service_1 = require("../services/summary/summary.service");
 class HermesSDKError extends Error {
     constructor(message, statusCode, code, details) {
         super(message);
@@ -28,9 +27,7 @@ class HermesClient {
             timeout: config.timeout || 30000,
             headers: {
                 'Content-Type': 'application/json',
-                ...(config.jwtToken && { 'Authorization': `Bearer ${config.jwtToken}` }),
                 ...(config.tenantId && { 'X-Tenant-ID': config.tenantId }),
-                ...(config.operatingTenantId && { 'X-Operating-Tenant-Id': config.operatingTenantId }),
                 ...(config.apiKey && { 'X-API-Key': config.apiKey }),
             },
         });
@@ -39,26 +36,30 @@ class HermesClient {
         this.leads = new lead_service_1.LeadService(this.httpClient);
         this.messages = new message_service_1.MessageService(this.httpClient);
         this.analytics = new analytics_service_1.AnalyticsService(this.httpClient);
-        this.summary = new summary_service_1.SummaryService(this.httpClient);
     }
     setupInterceptors() {
         this.httpClient.interceptors.request.use(async (config) => {
-            const { getAccessToken, getOperatingTenantId } = this.config;
-            if (getAccessToken) {
-                const token = await Promise.resolve(getAccessToken());
-                if (token && config.headers) {
+            const { getAccessToken, getOperatingTenantId, jwtToken, operatingTenantId } = this.config;
+            // Authorization: use callback if provided, else static jwtToken
+            const token = getAccessToken
+                ? await Promise.resolve(getAccessToken())
+                : jwtToken;
+            if (config.headers) {
+                if (token) {
                     config.headers.Authorization = `Bearer ${token}`;
                 }
+                else {
+                    delete config.headers.Authorization;
+                }
             }
-            if (getOperatingTenantId) {
-                const tenantId = getOperatingTenantId();
-                if (config.headers) {
-                    if (tenantId) {
-                        config.headers['X-Operating-Tenant-Id'] = tenantId;
-                    }
-                    else {
-                        delete config.headers['X-Operating-Tenant-Id'];
-                    }
+            // X-Operating-Tenant-Id: use callback if provided, else static operatingTenantId
+            const tenantId = getOperatingTenantId ? getOperatingTenantId() : operatingTenantId;
+            if (config.headers) {
+                if (tenantId) {
+                    config.headers['X-Operating-Tenant-Id'] = tenantId;
+                }
+                else {
+                    delete config.headers['X-Operating-Tenant-Id'];
                 }
             }
             if (config.method === "get" && config.url) {

@@ -8,27 +8,11 @@ import {
     LeadField,
 } from "./lead.types";
 
-function buildGetLeadsParams(params?: GetLeadsParams): Record<string, string | number | undefined> {
-    if (!params) return {};
-    const limit = params.limit ?? 10;
-    const page = params.page ?? (params.offset != null ? Math.floor(params.offset / limit) + 1 : 1);
-    const out: Record<string, string | number | undefined> = {
-        page,
-        limit,
-        ...(params.status != null && { status: params.status }),
-        ...(params.startDate != null && { startDate: params.startDate }),
-        ...(params.endDate != null && { endDate: params.endDate }),
-        ...(params.leadPotential != null && { leadPotential: params.leadPotential }),
-    };
-    return out;
-}
-
 export class LeadService {
     constructor(private httpClient: AxiosInstance) {}
 
     async getLeads(params?: GetLeadsParams): Promise<GetLeadsResponse> {
-        const query = buildGetLeadsParams(params);
-        const response = await this.httpClient.get("/api/v1/leads", { params: query });
+        const response = await this.httpClient.get("/api/v1/leads", { params });
         return response.data;
     }
 

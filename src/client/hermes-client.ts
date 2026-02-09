@@ -4,7 +4,6 @@ import { LeadService } from "../services/lead/lead.service";
 import { MessageService } from "../services/message/message.service";
 import { ChatService } from "../services/chat/chat.service";
 import { AnalyticsService } from "../services/analytics/analytics.service";
-import { SummaryService } from "../services/summary/summary.service";
 
 export class HermesSDKError extends Error {
     constructor(
@@ -25,7 +24,6 @@ export class HermesClient {
     public leads: LeadService;
     public messages: MessageService;
     public analytics: AnalyticsService;
-    public summary: SummaryService;
 
     constructor(config: SDKConfig) {
         this.config = config;
@@ -34,9 +32,7 @@ export class HermesClient {
             timeout: config.timeout || 30000,
             headers: {
                 'Content-Type': 'application/json',
-                ...(config.jwtToken && { 'Authorization': `Bearer ${config.jwtToken}` }),
                 ...(config.tenantId && { 'X-Tenant-ID': config.tenantId }),
-                ...(config.operatingTenantId && { 'X-Operating-Tenant-Id': config.operatingTenantId }),
                 ...(config.apiKey && { 'X-API-Key': config.apiKey }),
             },
         });
@@ -47,29 +43,32 @@ export class HermesClient {
         this.leads = new LeadService(this.httpClient);
         this.messages = new MessageService(this.httpClient);
         this.analytics = new AnalyticsService(this.httpClient);
-        this.summary = new SummaryService(this.httpClient);
     }
 
     private setupInterceptors() {
         this.httpClient.interceptors.request.use(
             async (config: InternalAxiosRequestConfig) => {
-                const { getAccessToken, getOperatingTenantId } = this.config;
+                const { getAccessToken, getOperatingTenantId, jwtToken, operatingTenantId } = this.config;
 
-                if (getAccessToken) {
-                    const token = await Promise.resolve(getAccessToken());
-                    if (token && config.headers) {
+                // Authorization: use callback if provided, else static jwtToken
+                const token = getAccessToken
+                    ? await Promise.resolve(getAccessToken())
+                    : jwtToken;
+                if (config.headers) {
+                    if (token) {
                         config.headers.Authorization = `Bearer ${token}`;
+                    } else {
+                        delete config.headers.Authorization;
                     }
                 }
 
-                if (getOperatingTenantId) {
-                    const tenantId = getOperatingTenantId();
-                    if (config.headers) {
-                        if (tenantId) {
-                            config.headers['X-Operating-Tenant-Id'] = tenantId;
-                        } else {
-                            delete config.headers['X-Operating-Tenant-Id'];
-                        }
+                // X-Operating-Tenant-Id: use callback if provided, else static operatingTenantId
+                const tenantId = getOperatingTenantId ? getOperatingTenantId() : operatingTenantId;
+                if (config.headers) {
+                    if (tenantId) {
+                        config.headers['X-Operating-Tenant-Id'] = tenantId;
+                    } else {
+                        delete config.headers['X-Operating-Tenant-Id'];
                     }
                 }
 
