@@ -1,4 +1,16 @@
-import { PaginatedResponse } from "../../shared/types";
+export interface GetLeadsParams {
+    limit?: number;
+    offset?: number;
+    page?: number;
+    status?: string;
+    startDate?: string;
+    endDate?: string;
+    leadPotential?: string;
+    showCompletedProfile?: boolean;
+    courseType?: string;
+    sortBy?: string;
+    sortDirn?: "asc" | "desc";
+}
 export interface Lead {
     id: string;
     tenantId: string;
@@ -33,7 +45,13 @@ export interface LeadField {
     updatedAt: string;
     fieldDetails: any;
 }
-export type GetLeadsResponse = PaginatedResponse<Lead>;
+export interface GetLeadsResponse {
+    items: Lead[];
+    page: number;
+    limit: number;
+    total: number;
+    totalPages: number;
+}
 export interface CreateLeadRequest {
     chatId: string | null;
     leadPotential: string;

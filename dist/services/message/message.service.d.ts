@@ -3,7 +3,7 @@ import { Message, CreateMessageRequest, CreateMessageFeedbackRequest, MessageFee
 export declare class MessageService {
     private httpClient;
     constructor(httpClient: AxiosInstance);
-    getMessages(chatId: string): Promise<Message>;
+    getMessages(chatId: string): Promise<Message[]>;
     createMessage(message: CreateMessageRequest): Promise<Message>;
     getFeedbackByMessage(messageId: string): Promise<MessageFeedback>;
     getFeedbackByTenant(): Promise<MessageFeedback[]>;
