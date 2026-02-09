@@ -21,7 +21,12 @@ class HermesSDKError extends Error {
 exports.HermesSDKError = HermesSDKError;
 class HermesClient {
     constructor(config) {
+        this._accessToken = null;
+        this._operatingTenantId = null;
         this.config = config;
+        // Initialize internal state from config
+        this._accessToken = config.jwtToken || null;
+        this._operatingTenantId = config.operatingTenantId || null;
         this.httpClient = axios_1.default.create({
             baseURL: config.baseUrl,
             timeout: config.timeout || 30000,
@@ -37,26 +42,35 @@ class HermesClient {
         this.messages = new message_service_1.MessageService(this.httpClient);
         this.analytics = new analytics_service_1.AnalyticsService(this.httpClient);
     }
+    /**
+     * Set the access token (JWT) for authentication.
+     * This token will be used in the Authorization header for all requests.
+     */
+    setAccessToken(token) {
+        this._accessToken = token;
+    }
+    /**
+     * Set the operating tenant ID.
+     * This is used for SERVICE role tokens to specify which tenant to operate on.
+     */
+    setOperatingTenantId(tenantId) {
+        this._operatingTenantId = tenantId;
+    }
     setupInterceptors() {
         this.httpClient.interceptors.request.use(async (config) => {
-            const { getAccessToken, getOperatingTenantId, jwtToken, operatingTenantId } = this.config;
-            // Authorization: use callback if provided, else static jwtToken
-            const token = getAccessToken
-                ? await Promise.resolve(getAccessToken())
-                : jwtToken;
+            // Use internal state for Authorization header
             if (config.headers) {
-                if (token) {
-                    config.headers.Authorization = `Bearer ${token}`;
+                if (this._accessToken) {
+                    config.headers.Authorization = `Bearer ${this._accessToken}`;
                 }
                 else {
                     delete config.headers.Authorization;
                 }
             }
-            // X-Operating-Tenant-Id: use callback if provided, else static operatingTenantId
-            const tenantId = getOperatingTenantId ? getOperatingTenantId() : operatingTenantId;
+            // Use internal state for X-Operating-Tenant-Id header
             if (config.headers) {
-                if (tenantId) {
-                    config.headers['X-Operating-Tenant-Id'] = tenantId;
+                if (this._operatingTenantId) {
+                    config.headers['X-Operating-Tenant-Id'] = this._operatingTenantId;
                 }
                 else {
                     delete config.headers['X-Operating-Tenant-Id'];
@@ -92,8 +106,12 @@ class HermesClient {
                 on401Refresh) {
                 originalRequest._retry = true;
                 const newToken = await on401Refresh();
-                if (newToken && originalRequest.headers) {
-                    originalRequest.headers.Authorization = `Bearer ${newToken}`;
+                if (newToken) {
+                    // Update internal state with new token
+                    this._accessToken = newToken;
+                    if (originalRequest.headers) {
+                        originalRequest.headers.Authorization = `Bearer ${newToken}`;
+                    }
                     return this.httpClient.request(originalRequest);
                 }
             }

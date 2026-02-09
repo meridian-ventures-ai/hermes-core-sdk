@@ -1,6 +1,5 @@
 import { AxiosInstance } from "axios";
-import { Chat, ChatResponse, ChatWithProfileData, CreateChatRequest } from "./chat.types";
-import { SummaryResponse } from "../summary/summary.types";
+import { Chat, ChatResponse, ChatWithProfileData, CreateChatRequest, SummaryResponse } from "./chat.types";
 interface PaginationParams {
     page?: number;
     pageSize?: number;
