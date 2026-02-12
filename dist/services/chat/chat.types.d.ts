@@ -18,6 +18,8 @@ export interface ChatWithProfileData {
     sessionId: string;
     lastMessageAt: string | null;
     summary: string | null;
+    source?: string;
+    leadId?: string;
     phase: string;
     createdAt: string;
     updatedAt: string;
@@ -28,6 +30,8 @@ export interface CreateChatRequest {
     sessionId: string;
     phase: string;
     summary?: string;
+    leadId?: string;
+    source?: string;
 }
 export interface SummaryRecommendation {
     action?: string;

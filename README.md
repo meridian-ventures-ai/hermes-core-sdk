@@ -69,6 +69,61 @@ Build the SDK:
 yarn build
 ```
 
+## Local Development: Using `yarn link` (Recommended)
+
+For active development in both the SDK and consuming project, use `yarn link` to symlink the local SDK—so any SDK code changes reflect immediately in your app (agent).
+
+### 1. Link the SDK Locally
+
+**In the `hermes-sdk` directory:**
+
+```bash
+yarn build
+
+yarn link
+```
+
+### 2. Connect Your Agent Project to the SDK
+
+**In your agent project directory (e.g., `agent-chat-client1`):**
+
+```bash
+yarn link "@meridian-ventures-ai/hermes-core-sdk"
+```
+
+### 3. Run Both Projects in Watch Mode
+
+- **Terminal 1: Watch and Build the SDK**
+  ```bash
+  cd hermes-sdk
+  yarn build --watch
+  ```
+
+- **Terminal 2: Start Your Agent Project**
+  ```bash
+  cd agent-chat-client1
+  yarn dev
+  ```
+
+> Changes in the SDK will trigger rebuilds and immediately reflect in your agent project. ✨
+
+### 4. Unlink When Done
+
+To return to using the published SDK version:
+
+**In your agent project:**
+```bash
+yarn unlink "@meridian-ventures-ai/hermes-core-sdk"
+yarn install --force
+```
+
+**In the SDK project:**
+```bash
+yarn unlink
+```
+
+---
+
 ## Publishing & Versioning
 
 To publish a new version or update an existing tag, follow these steps:
@@ -129,4 +184,5 @@ MIT
 
 ## Repository
 
-[https://github.com/meridian-ventures/hermes-sdk](https://github.com/meridian-ventures/hermes-sdk)
+[https://github.com/meridian-ventures-ai/hermes-sdk](https://github.com/meridian-ventures-ai/hermes-sdk)
+

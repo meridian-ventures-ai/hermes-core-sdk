@@ -14,7 +14,7 @@ export interface GetLeadsParams {
 export interface Lead {
     id: string;
     tenantId: string;
-    chatId: string | null;
+    createdFrom?: "HERMES" | "PHOENIX" | "MANUAL" | "IMPORT" | "API";
     leadPotential: string;
     profileCompleteness: number;
     status: string;
@@ -55,6 +55,7 @@ export interface GetLeadsResponse {
 export interface CreateLeadRequest {
     chatId: string | null;
     leadPotential: string;
+    createdFrom: "HERMES" | "PHOENIX" | "MANUAL" | "IMPORT" | "API";
     leadScore: number;
     leadScoreBreakdown: Record<string, any> | null;
     profileCompleteness: number;
