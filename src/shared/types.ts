@@ -17,3 +17,26 @@ export interface ApiResponse<T> {
     message: string;
     success: boolean;
 }
+
+export interface SummaryRecommendation {
+    action?: string;
+    title?: string;
+    description?: string;
+    priority?: string;
+    category?: string;
+    timeline?: string;
+    evidence?: string[];
+}
+
+export interface SummaryPayload {
+    summary?: string;
+    recommendations?: SummaryRecommendation[];
+    isCached?: boolean;
+}
+
+export interface SummaryResponse {
+    success: boolean;
+    summary: string;
+    recommendations: SummaryRecommendation[];
+    isCached?: boolean;
+}

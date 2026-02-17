@@ -38,23 +38,13 @@ export interface CreateChatRequest {
   source?: string;
 }
 
-export interface SummaryRecommendation {
-    action?: string;
-    title?: string;
-    description?: string;
-    priority?: string;
-    category?: string;
-    timeline?: string;
-    evidence?: string[];
-}
 
-export interface SummaryResponse {
-    success: boolean;
-    summary: string;
-    recommendations: SummaryRecommendation[];
-    isCached?: boolean;
+export interface GetChatsParams {
+    page?: number;
+    limit?: number;
+    startDate?: string;
+    endDate?: string;
 }
-
 
 
 

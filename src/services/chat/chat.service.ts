@@ -1,39 +1,13 @@
 import { AxiosInstance } from "axios";
-import { Chat, ChatResponse, ChatWithProfileData, CreateChatRequest, SummaryRecommendation, SummaryResponse } from "./chat.types";
+import { Chat, ChatResponse, ChatWithProfileData, CreateChatRequest, GetChatsParams } from "./chat.types";
+import { SummaryPayload, SummaryResponse } from "../../shared/types";
+import { toSummaryResponse } from "../../shared/utils";
 
-interface PaginationParams {
-    page?: number;
-    pageSize?: number;
-}
-
-interface SummaryPayload {
-    summary?: string;
-    recommendations?: SummaryRecommendation[];
-    isCached?: boolean;
-}
-
-function toSummaryResponse(payload: SummaryPayload): SummaryResponse {
-    const recs = payload.recommendations ?? [];
-    return {
-        success: true,
-        summary: payload.summary ?? "",
-        recommendations: recs.map((r) => ({
-            action: r.action ?? r.title ?? r.description ?? "",
-            title: r.title,
-            description: r.description,
-            priority: r.priority,
-            category: r.category,
-            timeline: r.timeline,
-            evidence: r.evidence ?? [],
-        })),
-        isCached: payload.isCached ?? false,
-    };
-}
 
 export class ChatService {
     constructor(private httpClient: AxiosInstance) {}
 
-    async getChats(paginationParams?: PaginationParams): Promise<ChatResponse> {
+    async getChats(paginationParams?: GetChatsParams): Promise<ChatResponse> {
         const response = await this.httpClient.get('/api/v1/chats', { params: paginationParams });
         return response.data;
     }
