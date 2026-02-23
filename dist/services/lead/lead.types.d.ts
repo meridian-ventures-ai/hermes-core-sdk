@@ -15,11 +15,15 @@ export interface Lead {
     id: string;
     tenantId: string;
     createdFrom?: "HERMES" | "PHOENIX" | "MANUAL" | "IMPORT" | "API";
-    leadPotential: string;
+    firstName?: string;
+    lastName?: string;
+    email?: string;
+    phone?: string;
+    potential: string;
     profileCompleteness: number;
     status: string;
-    leadScore: number;
-    leadScoreBreakdown: Record<string, any> | null;
+    score: number;
+    scoreBreakdown: Record<string, any> | null;
     metadata: any;
     createdAt: string;
     updatedAt: string;
@@ -53,17 +57,18 @@ export interface GetLeadsResponse {
     totalPages: number;
 }
 export interface CreateLeadRequest {
-    chatId: string | null;
-    leadPotential: string;
-    createdFrom: "HERMES" | "PHOENIX" | "MANUAL" | "IMPORT" | "API";
-    leadScore: number;
-    leadScoreBreakdown: Record<string, any> | null;
-    profileCompleteness: number;
-    status: string;
-    metadata: any;
-    responses: {
+    chatId?: string | null;
+    createdFrom?: string | null;
+    temperature?: string | null;
+    score?: number | null;
+    scoreBreakdown?: any | null;
+    metadata?: any | null;
+    profileCompleteness?: number;
+    status?: string;
+    responses?: {
         fieldId: string;
         value: any;
+        fieldName: string;
     }[];
 }
 export interface CreateLeadFieldRequest {

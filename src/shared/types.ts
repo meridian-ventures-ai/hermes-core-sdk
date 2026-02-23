@@ -40,3 +40,37 @@ export interface SummaryResponse {
     recommendations: SummaryRecommendation[];
     isCached?: boolean;
 }
+
+export interface GetLeadByIdField {
+    fieldId: string;
+    fieldName: string;
+    question: string;
+    type: string;
+    order: number;
+    value: any;
+}
+
+export interface GetLeadByIdResponse {
+    id: string;
+    tenantId: string;
+    chatId: string;
+    leadId: string;
+    firstName: string;
+    lastName: string;
+    email: string;
+    phone: string;
+    status: string;
+    temperature: string;
+    score: number;
+    scoreBreakdown: Record<string, any>;
+    profileCompleteness: number;
+    createdFrom: string;
+    metadata: {
+        phase: string;
+        source: string;
+        [key: string]: any;
+    };
+    createdAt: string;
+    updatedAt: string;
+    fields: GetLeadByIdField[];
+}

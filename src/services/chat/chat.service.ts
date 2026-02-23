@@ -1,6 +1,6 @@
 import { AxiosInstance } from "axios";
-import { Chat, ChatResponse, ChatWithProfileData, CreateChatRequest, GetChatsParams } from "./chat.types";
-import { SummaryPayload, SummaryResponse } from "../../shared/types";
+import { Chat, ChatResponse, CreateChatRequest, GetChatsParams } from "./chat.types";
+import { GetLeadByIdResponse, SummaryPayload, SummaryResponse } from "../../shared/types";
 import { toSummaryResponse } from "../../shared/utils";
 
 
@@ -17,8 +17,8 @@ export class ChatService {
         return response.data;
     }
 
-    async getProfileByChatId(chatId: string): Promise<ChatWithProfileData | null> {
-        const response = await this.httpClient.get(`/api/v1/chats/profile/${chatId}`);
+    async getProfileByChatId(chatId: string): Promise<GetLeadByIdResponse | null> {
+        const response = await this.httpClient.get(`/api/v1/chats/${chatId}/lead-profile`);
         return response.data;
     }
 

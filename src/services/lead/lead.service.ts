@@ -7,6 +7,7 @@ import {
     Lead,
     LeadField,
 } from "./lead.types";
+import { GetLeadByIdResponse } from "../../shared/types";
 
 export class LeadService {
     constructor(private httpClient: AxiosInstance) {}
@@ -16,7 +17,7 @@ export class LeadService {
         return response.data;
     }
 
-    async getLead(leadId: string): Promise<Lead> {
+    async getLead(leadId: string): Promise<GetLeadByIdResponse> {
         const response = await this.httpClient.get(`/api/v1/leads/${leadId}`);
         return response.data;
     }

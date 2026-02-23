@@ -15,7 +15,7 @@ class ChatService {
         return response.data;
     }
     async getProfileByChatId(chatId) {
-        const response = await this.httpClient.get(`/api/v1/chats/profile/${chatId}`);
+        const response = await this.httpClient.get(`/api/v1/chats/${chatId}/lead-profile`);
         return response.data;
     }
     async getSummary(chatId) {
