@@ -11,28 +11,31 @@ export interface GetLeadsParams {
     sortBy?: string;
     sortDirn?: "asc" | "desc";
 }
+interface DynamicField {
+    value: any;
+    question?: string;
+}
+interface Phone {
+    countryCode: string;
+    phoneNumber: string;
+}
 export interface Lead {
     id: string;
     tenantId: string;
+    firstName?: string;
+    lastName?: string;
+    email?: string;
+    phone?: Phone | string | null;
     createdFrom?: "HERMES" | "PHOENIX" | "MANUAL" | "IMPORT" | "API";
     leadPotential: string;
     profileCompleteness: number;
     status: string;
     leadScore: number;
     leadScoreBreakdown: Record<string, any> | null;
+    dynamicFields: Record<string, DynamicField> | null;
     metadata: any;
     createdAt: string;
     updatedAt: string;
-    leadFieldValues?: LeadFieldValue[];
-}
-export interface LeadFieldValue {
-    id: string;
-    value: any;
-    leadId: string;
-    fieldId: string;
-    createdAt: string;
-    updatedAt: string;
-    leadFields?: LeadField | null;
 }
 export interface LeadField {
     id: string;
@@ -63,6 +66,7 @@ export interface CreateLeadRequest {
     metadata: any;
     responses: {
         fieldId: string;
+        fieldName: string;
         value: any;
     }[];
 }
@@ -73,3 +77,4 @@ export interface CreateLeadFieldRequest {
     order: number;
     fieldDetails: Record<string, any>;
 }
+export {};
