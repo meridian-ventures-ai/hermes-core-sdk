@@ -10,6 +10,7 @@ export interface EscalationListItem {
     urgency: number | null;
     claimedBy: string | null;
     createdAt: string;
+    updatedAt: string;
 }
 export interface EscalationDetail extends EscalationListItem {
     agentResponse: string | null;
@@ -25,7 +26,6 @@ export interface GetEscalationsParams {
     page?: number;
     limit?: number;
     status?: EscalationStatus;
-    leadId?: string;
 }
 export interface GetEscalationsResponse {
     items: EscalationListItem[];
