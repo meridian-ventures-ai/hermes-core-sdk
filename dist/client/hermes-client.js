@@ -9,7 +9,6 @@ const lead_service_1 = require("../services/lead/lead.service");
 const message_service_1 = require("../services/message/message.service");
 const chat_service_1 = require("../services/chat/chat.service");
 const analytics_service_1 = require("../services/analytics/analytics.service");
-const escalation_service_1 = require("../services/escalation/escalation.service");
 class HermesSDKError extends Error {
     constructor(message, statusCode, code, details) {
         super(message);
@@ -42,7 +41,6 @@ class HermesClient {
         this.leads = new lead_service_1.LeadService(this.httpClient);
         this.messages = new message_service_1.MessageService(this.httpClient);
         this.analytics = new analytics_service_1.AnalyticsService(this.httpClient);
-        this.escalations = new escalation_service_1.EscalationService(this.httpClient);
     }
     /**
      * Set the access token (JWT) for authentication.
