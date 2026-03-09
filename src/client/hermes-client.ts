@@ -4,7 +4,6 @@ import { LeadService } from "../services/lead/lead.service";
 import { MessageService } from "../services/message/message.service";
 import { ChatService } from "../services/chat/chat.service";
 import { AnalyticsService } from "../services/analytics/analytics.service";
-import { EscalationService } from "../services/escalation/escalation.service";
 
 export class HermesSDKError extends Error {
     constructor(
@@ -27,7 +26,6 @@ export class HermesClient {
     public leads: LeadService;
     public messages: MessageService;
     public analytics: AnalyticsService;
-    public escalations: EscalationService;
 
     constructor(config: SDKConfig) {
         this.config = config;
@@ -52,7 +50,6 @@ export class HermesClient {
         this.leads = new LeadService(this.httpClient);
         this.messages = new MessageService(this.httpClient);
         this.analytics = new AnalyticsService(this.httpClient);
-        this.escalations = new EscalationService(this.httpClient);
     }
 
     /**
