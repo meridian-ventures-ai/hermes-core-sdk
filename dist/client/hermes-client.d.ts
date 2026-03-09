@@ -3,6 +3,7 @@ import { LeadService } from "../services/lead/lead.service";
 import { MessageService } from "../services/message/message.service";
 import { ChatService } from "../services/chat/chat.service";
 import { AnalyticsService } from "../services/analytics/analytics.service";
+import { EscalationService } from "../services/escalation/escalation.service";
 export declare class HermesSDKError extends Error {
     statusCode?: number | undefined;
     code?: string | undefined;
@@ -18,6 +19,7 @@ export declare class HermesClient {
     leads: LeadService;
     messages: MessageService;
     analytics: AnalyticsService;
+    escalations: EscalationService;
     constructor(config: SDKConfig);
     /**
      * Set the access token (JWT) for authentication.
