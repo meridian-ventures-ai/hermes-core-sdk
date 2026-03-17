@@ -17,6 +17,11 @@ export class ChatService {
         return response.data;
     }
 
+    async getChatsByLeadId(leadId: string): Promise<Chat[]> {
+        const response = await this.httpClient.get(`/api/v1/leads/${leadId}/chats`);
+        return response.data;
+    }
+
     async getProfileByChatId(chatId: string): Promise<ChatWithProfileData | null> {
         const response = await this.httpClient.get(`/api/v1/chats/${chatId}/lead`);
         return response.data;

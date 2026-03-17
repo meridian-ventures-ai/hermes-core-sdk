@@ -22,5 +22,6 @@ __exportStar(require("./services/lead/lead.types"), exports);
 __exportStar(require("./services/message/message.types"), exports);
 __exportStar(require("./services/analytics/analytics.types"), exports);
 __exportStar(require("./services/escalation/escalation.types"), exports);
+__exportStar(require("./services/calls/call.types"), exports);
 // Summary types moved to chat.types.ts - kept for backward compatibility
 __exportStar(require("./config/sdk-config"), exports);

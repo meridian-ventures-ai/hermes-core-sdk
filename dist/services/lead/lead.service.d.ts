@@ -1,10 +1,11 @@
 import { AxiosInstance } from "axios";
-import { CreateLeadFieldRequest, CreateLeadRequest, GetLeadsParams, GetLeadsResponse, Lead, LeadField } from "./lead.types";
+import { CreateLeadFieldRequest, CreateLeadRequest, GetLeadsParams, GetLeadsResponse, Lead, LeadField, LeadMapResponse } from "./lead.types";
 export declare class LeadService {
     private httpClient;
     constructor(httpClient: AxiosInstance);
     getLeads(params?: GetLeadsParams): Promise<GetLeadsResponse>;
     getLead(leadId: string): Promise<Lead>;
+    getLeadMap(leadId: string): Promise<LeadMapResponse>;
     getLeadFields(): Promise<LeadField[]>;
     deleteLead(leadId: string): Promise<void>;
     createLead(lead: CreateLeadRequest): Promise<Lead>;
