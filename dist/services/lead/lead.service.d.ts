@@ -5,7 +5,7 @@ export declare class LeadService {
     constructor(httpClient: AxiosInstance);
     getLeads(params?: GetLeadsParams): Promise<GetLeadsResponse>;
     getLead(leadId: string): Promise<Lead>;
-    getLeadMap(leadId: string): Promise<LeadMapResponse>;
+    getLeadJourney(leadId: string): Promise<LeadMapResponse>;
     getLeadFields(): Promise<LeadField[]>;
     deleteLead(leadId: string): Promise<void>;
     createLead(lead: CreateLeadRequest): Promise<Lead>;

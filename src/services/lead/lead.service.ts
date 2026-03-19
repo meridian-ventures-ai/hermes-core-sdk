@@ -22,8 +22,8 @@ export class LeadService {
         return response.data;
     }
 
-    async getLeadMap(leadId: string): Promise<LeadMapResponse> {
-        const response = await this.httpClient.get(`/api/v1/leads/${leadId}/map`);
+    async getLeadJourney(leadId: string): Promise<LeadMapResponse> {
+        const response = await this.httpClient.get(`/api/v1/leads/${leadId}/journey`);
         return response.data;
     }
 
