@@ -6,6 +6,7 @@ export declare class ChatService {
     constructor(httpClient: AxiosInstance);
     getChats(paginationParams?: GetChatsParams): Promise<ChatResponse>;
     getChat(chatId: string): Promise<Chat | null>;
+    getChatsByLeadId(leadId: string): Promise<Chat[]>;
     getProfileByChatId(chatId: string): Promise<ChatWithProfileData | null>;
     getSummary(chatId: string): Promise<SummaryResponse>;
     createChat(chat: CreateChatRequest): Promise<Chat>;

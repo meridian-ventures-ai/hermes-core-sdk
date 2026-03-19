@@ -1,3 +1,18 @@
+import { CallLog } from "../calls/call.types";
+
+export interface LeadMapChatItem {
+    id: string;
+    tenantId: string;
+    source: string;
+    createdAt: string;
+    updatedAt: string;
+}
+
+export interface LeadMapResponse {
+    chats: LeadMapChatItem[];
+    callLogs: CallLog[];
+}
+
 export interface GetLeadsParams {
     limit?: number;
     offset?: number;

@@ -14,6 +14,10 @@ class ChatService {
         const response = await this.httpClient.get(`/api/v1/chats/${chatId}`);
         return response.data;
     }
+    async getChatsByLeadId(leadId) {
+        const response = await this.httpClient.get(`/api/v1/leads/${leadId}/chats`);
+        return response.data;
+    }
     async getProfileByChatId(chatId) {
         const response = await this.httpClient.get(`/api/v1/chats/${chatId}/lead`);
         return response.data;

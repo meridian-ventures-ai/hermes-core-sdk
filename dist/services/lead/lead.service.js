@@ -13,6 +13,10 @@ class LeadService {
         const response = await this.httpClient.get(`/api/v1/leads/${leadId}`);
         return response.data;
     }
+    async getLeadJourney(leadId) {
+        const response = await this.httpClient.get(`/api/v1/leads/${leadId}/journey`);
+        return response.data;
+    }
     async getLeadFields() {
         const response = await this.httpClient.get('/api/v1/leads/fields');
         return response.data;
