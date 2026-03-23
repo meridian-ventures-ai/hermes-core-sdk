@@ -10,6 +10,8 @@ export interface GetLeadsParams {
     courseType?: string;
     sortBy?: string;
     sortDirn?: "asc" | "desc";
+    /** Comma-separated lead UUIDs; server returns only those rows (tenant-scoped), max 100 IDs per request. */
+    ids?: string;
 }
 interface DynamicField {
     value: any;

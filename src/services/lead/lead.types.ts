@@ -10,6 +10,7 @@ export interface GetLeadsParams {
     courseType?: string;
     sortBy?: string;
     sortDirn?: "asc" | "desc";
+    ids?: string;
 }
 
 interface DynamicField {
