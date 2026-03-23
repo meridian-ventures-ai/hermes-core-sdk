@@ -9,6 +9,8 @@ export type ResolutionType =
 export interface EscalationListItem {
     id: string;
     leadId: string | null;
+    leadFirstName: string | null;
+    leadLastName: string | null;
     chatId: string;
     source: string;
     causeForEscalation: string;
