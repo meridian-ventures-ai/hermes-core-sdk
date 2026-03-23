@@ -3,6 +3,8 @@ export type ResolutionType = "followed_up_successfully" | "kb_gap_identified" | 
 export interface EscalationListItem {
     id: string;
     leadId: string | null;
+    leadFirstName: string | null;
+    leadLastName: string | null;
     chatId: string;
     source: string;
     causeForEscalation: string;
