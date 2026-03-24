@@ -36,6 +36,7 @@ export interface GetEscalationsParams {
     page?: number;
     limit?: number;
     status?: EscalationStatus;
+    claimedBy?: string;
 }
 
 export interface GetEscalationsResponse {
@@ -44,11 +45,6 @@ export interface GetEscalationsResponse {
     page: number;
     limit: number;
     totalPages: number;
-}
-
-export interface ClaimEscalationPayload {
-    status: "CLAIMED";
-    claimedBy: string;
 }
 
 export interface ResolveEscalationPayload {
