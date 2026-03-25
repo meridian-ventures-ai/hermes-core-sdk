@@ -10,7 +10,7 @@ export interface EscalationListItem {
     causeForEscalation: string;
     status: EscalationStatus;
     urgency: number | null;
-    claimedBy: string | null;
+    claimedBy: number | null;
     createdAt: string;
     updatedAt: string;
 }
@@ -28,7 +28,7 @@ export interface GetEscalationsParams {
     page?: number;
     limit?: number;
     status?: EscalationStatus;
-    claimedBy?: string;
+    claimedBy?: number;
 }
 export interface GetEscalationsResponse {
     items: EscalationListItem[];
