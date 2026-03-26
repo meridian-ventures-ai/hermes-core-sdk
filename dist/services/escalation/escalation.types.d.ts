@@ -28,6 +28,7 @@ export interface GetEscalationsParams {
     page?: number;
     limit?: number;
     status?: EscalationStatus;
+    claimedBy?: number;
 }
 export interface GetEscalationsResponse {
     items: EscalationListItem[];
