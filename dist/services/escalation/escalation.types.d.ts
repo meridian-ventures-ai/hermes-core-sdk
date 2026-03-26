@@ -37,6 +37,10 @@ export interface GetEscalationsResponse {
     limit: number;
     totalPages: number;
 }
+export interface ClaimEscalationPayload {
+    status: "CLAIMED";
+    claimedBy: number;
+}
 export interface ResolveEscalationPayload {
     status: "DEESCALATED";
     resolutionType: ResolutionType;
