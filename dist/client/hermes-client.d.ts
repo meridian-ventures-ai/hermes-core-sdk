@@ -3,6 +3,7 @@ import { LeadService } from "../services/lead/lead.service";
 import { MessageService } from "../services/message/message.service";
 import { ChatService } from "../services/chat/chat.service";
 import { AnalyticsService } from "../services/analytics/analytics.service";
+import { PhoenixAnalyticsService } from "../services/phoenix-analytics/phoenix-analytics.service";
 import { EscalationService } from "../services/escalation/escalation.service";
 import { CallService } from "../services/calls/call.service";
 export declare class HermesSDKError extends Error {
@@ -20,6 +21,7 @@ export declare class HermesClient {
     leads: LeadService;
     messages: MessageService;
     analytics: AnalyticsService;
+    phoenixAnalytics: PhoenixAnalyticsService;
     escalations: EscalationService;
     calls: CallService;
     constructor(config: SDKConfig);
