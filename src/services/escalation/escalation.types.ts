@@ -16,7 +16,7 @@ export interface EscalationListItem {
     causeForEscalation: string;
     status: EscalationStatus;
     urgency: number | null;
-    claimedBy: string | null;
+    claimedBy: number | null;
     createdAt: string;
     updatedAt: string;
 }
@@ -48,7 +48,7 @@ export interface GetEscalationsResponse {
 
 export interface ClaimEscalationPayload {
     status: "CLAIMED";
-    claimedBy: string;
+    claimedBy: number;
 }
 
 export interface ResolveEscalationPayload {
