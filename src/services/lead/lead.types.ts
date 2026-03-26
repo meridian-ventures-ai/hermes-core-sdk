@@ -52,6 +52,8 @@ export interface Lead {
     leadScoreBreakdown: Record<string, any> | null;
     dynamicFields: Record<string, DynamicField> | null;
     metadata: any;
+    assignedTo: number | null;
+    assignedAt: string | null;
     createdAt: string;
     updatedAt: string;
 }
@@ -92,6 +94,10 @@ export interface CreateLeadRequest {
     }[];
 }
 
+
+export interface AssignLeadPayload {
+    assignedTo: number | null;
+}
 
 export interface CreateLeadFieldRequest {
   fieldName: string;

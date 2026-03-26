@@ -28,6 +28,10 @@ class LeadService {
         const response = await this.httpClient.post('/api/v1/leads', lead);
         return response.data;
     }
+    async assignLead(leadId, payload) {
+        const response = await this.httpClient.patch(`/api/v1/leads/${leadId}/assign`, payload);
+        return response.data;
+    }
     async createLeadField(leadField) {
         const response = await this.httpClient.post('/api/v1/leads/fields', leadField);
         return response.data;
