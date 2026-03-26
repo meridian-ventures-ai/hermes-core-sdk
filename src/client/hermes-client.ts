@@ -4,6 +4,7 @@ import { LeadService } from "../services/lead/lead.service";
 import { MessageService } from "../services/message/message.service";
 import { ChatService } from "../services/chat/chat.service";
 import { AnalyticsService } from "../services/analytics/analytics.service";
+import { PhoenixAnalyticsService } from "../services/phoenix-analytics/phoenix-analytics.service";
 import { EscalationService } from "../services/escalation/escalation.service";
 import { CallService } from "../services/calls/call.service";
 
@@ -28,6 +29,7 @@ export class HermesClient {
     public leads: LeadService;
     public messages: MessageService;
     public analytics: AnalyticsService;
+    public phoenixAnalytics: PhoenixAnalyticsService;
     public escalations: EscalationService;
     public calls: CallService;
 
@@ -54,6 +56,7 @@ export class HermesClient {
         this.leads = new LeadService(this.httpClient);
         this.messages = new MessageService(this.httpClient);
         this.analytics = new AnalyticsService(this.httpClient);
+        this.phoenixAnalytics = new PhoenixAnalyticsService(this.httpClient);
         this.escalations = new EscalationService(this.httpClient);
         this.calls = new CallService(this.httpClient);
     }
