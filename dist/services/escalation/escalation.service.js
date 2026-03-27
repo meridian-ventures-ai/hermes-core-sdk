@@ -13,8 +13,8 @@ class EscalationService {
         const response = await this.httpClient.get(`/api/v1/escalations/${escalationId}`);
         return response.data;
     }
-    async claimEscalation(escalationId, payload) {
-        const response = await this.httpClient.patch(`/api/v1/escalations/${escalationId}`, payload);
+    async claimEscalation(escalationId) {
+        const response = await this.httpClient.post(`/api/v1/escalations/${escalationId}/claim`);
         return response.data;
     }
     async resolveEscalation(escalationId, payload) {

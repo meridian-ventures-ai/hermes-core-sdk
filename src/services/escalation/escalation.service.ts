@@ -1,6 +1,5 @@
 import { AxiosInstance } from "axios";
 import {
-    ClaimEscalationPayload,
     EscalationDetail,
     GetEscalationsParams,
     GetEscalationsResponse,
@@ -20,13 +19,9 @@ export class EscalationService {
         return response.data;
     }
 
-    async claimEscalation(
-        escalationId: string,
-        payload: ClaimEscalationPayload
-    ): Promise<EscalationDetail> {
-        const response = await this.httpClient.patch(
-            `/api/v1/escalations/${escalationId}`,
-            payload
+    async claimEscalation(escalationId: string): Promise<EscalationDetail> {
+        const response = await this.httpClient.post(
+            `/api/v1/escalations/${escalationId}/claim`,
         );
         return response.data;
     }
