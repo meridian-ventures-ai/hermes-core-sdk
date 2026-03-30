@@ -1,5 +1,6 @@
 import { AxiosInstance } from "axios";
 import {
+    AssignLeadPayload,
     CreateLeadFieldRequest,
     CreateLeadRequest,
     GetLeadsParams,
@@ -38,6 +39,17 @@ export class LeadService {
 
     async createLead(lead: CreateLeadRequest): Promise<Lead> {
         const response = await this.httpClient.post('/api/v1/leads', lead);
+        return response.data;
+    }
+
+    /** Assign or unassign a lead. Pass { assignedTo: null } to unassign.
+     *  @throws 400 if the target user does not exist in the tenant
+     *  @throws 404 if the lead is not found */
+    async assignLead(leadId: string, payload: AssignLeadPayload): Promise<Lead> {
+        const response = await this.httpClient.patch(
+            `/api/v1/leads/${leadId}/assign`,
+            payload
+        );
         return response.data;
     }
 
