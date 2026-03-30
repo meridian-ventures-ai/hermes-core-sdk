@@ -9,6 +9,9 @@ export declare class LeadService {
     getLeadFields(): Promise<LeadField[]>;
     deleteLead(leadId: string): Promise<void>;
     createLead(lead: CreateLeadRequest): Promise<Lead>;
+    /** Assign or unassign a lead. Pass { assignedTo: null } to unassign.
+     *  @throws 400 if the target user does not exist in the tenant
+     *  @throws 404 if the lead is not found */
     assignLead(leadId: string, payload: AssignLeadPayload): Promise<Lead>;
     createLeadField(leadField: CreateLeadFieldRequest): Promise<LeadField>;
 }

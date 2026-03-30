@@ -42,6 +42,9 @@ export class LeadService {
         return response.data;
     }
 
+    /** Assign or unassign a lead. Pass { assignedTo: null } to unassign.
+     *  @throws 400 if the target user does not exist in the tenant
+     *  @throws 404 if the lead is not found */
     async assignLead(leadId: string, payload: AssignLeadPayload): Promise<Lead> {
         const response = await this.httpClient.patch(
             `/api/v1/leads/${leadId}/assign`,
