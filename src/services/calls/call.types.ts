@@ -50,6 +50,8 @@ export interface ScheduledCall {
     id: string;
     tenantId: string;
     leadId: string;
+    leadFirstName: string | null;
+    leadLastName: string | null;
     phoneNumber: string;
     scheduledAt: string;
     scheduledBy: ScheduledBy;
