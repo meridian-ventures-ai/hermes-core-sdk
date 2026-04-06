@@ -83,6 +83,7 @@ export interface UpdateScheduledCallRequest {
 export interface GetScheduledCallsParams {
     status?: ScheduledCallStatus;
     leadId?: string;
+    leadIds?: string[];
     from?: string;
     to?: string;
     page?: number;
