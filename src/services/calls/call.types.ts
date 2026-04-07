@@ -43,7 +43,7 @@ export interface CallTranscript {
 
 // Scheduled calls
 
-export type ScheduledCallStatus = 'PENDING' | 'QUEUED' | 'COMPLETED' | 'CANCELLED' | 'FAILED';
+export type ScheduledCallStatus = 'PENDING' | 'QUEUED' | 'COMPLETED' | 'CANCELLED' | 'FAILED' | 'NO_ANSWER' | 'BUSY';
 export type ScheduledBy = 'USER' | 'SYSTEM';
 
 export interface ScheduledCall {
@@ -75,7 +75,7 @@ export interface CreateScheduledCallRequest {
 
 export interface UpdateScheduledCallRequest {
     scheduledAt?: string;
-    status?: 'CANCELLED' | 'FAILED';
+    status?: 'CANCELLED' | 'FAILED' | 'NO_ANSWER' | 'BUSY';
     reason?: string;
     errorMessage?: string;
 }
