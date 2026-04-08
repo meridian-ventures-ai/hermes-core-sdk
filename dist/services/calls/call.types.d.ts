@@ -38,3 +38,45 @@ export interface CallTranscript {
     timestamp: string;
     createdAt: string;
 }
+export type ScheduledCallStatus = 'PENDING' | 'QUEUED' | 'COMPLETED' | 'CANCELLED' | 'FAILED' | 'NO_ANSWER' | 'BUSY';
+export type ScheduledBy = 'USER' | 'SYSTEM';
+export interface ScheduledCall {
+    id: string;
+    tenantId: string;
+    leadId: string;
+    leadFirstName: string | null;
+    leadLastName: string | null;
+    phoneNumber: string;
+    scheduledAt: string;
+    scheduledBy: ScheduledBy;
+    scheduledByUserId: number | null;
+    status: ScheduledCallStatus;
+    callLogId: string | null;
+    reason: string | null;
+    errorMessage: string | null;
+    createdAt: string;
+    updatedAt: string;
+}
+export interface CreateScheduledCallRequest {
+    leadId: string;
+    phoneNumber: string;
+    scheduledAt: string;
+    scheduledBy: ScheduledBy;
+    scheduledByUserId?: number;
+    reason?: string;
+}
+export interface UpdateScheduledCallRequest {
+    scheduledAt?: string;
+    status?: 'CANCELLED' | 'FAILED' | 'NO_ANSWER' | 'BUSY';
+    reason?: string;
+    errorMessage?: string;
+}
+export interface GetScheduledCallsParams {
+    status?: ScheduledCallStatus;
+    leadId?: string;
+    leadIds?: string[];
+    from?: string;
+    to?: string;
+    page?: number;
+    limit?: number;
+}
