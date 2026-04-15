@@ -1,5 +1,5 @@
 import { AxiosInstance } from "axios";
-import { AssignLeadPayload, CreateLeadFieldRequest, CreateLeadRequest, GetLeadsParams, GetLeadsResponse, Lead, LeadField, LeadMapResponse } from "./lead.types";
+import { AssignLeadPayload, CreateLeadFieldRequest, CreateLeadRequest, DynamicFieldsPatch, GetLeadsParams, GetLeadsResponse, Lead, LeadField, LeadMapResponse } from "./lead.types";
 export declare class LeadService {
     private httpClient;
     constructor(httpClient: AxiosInstance);
@@ -14,4 +14,9 @@ export declare class LeadService {
      *  @throws 404 if the lead is not found */
     assignLead(leadId: string, payload: AssignLeadPayload): Promise<Lead>;
     createLeadField(leadField: CreateLeadFieldRequest): Promise<LeadField>;
+    /**
+     * Partially update a lead's dynamicFields.
+     * Fields with source "FORM" are protected server-side and will not be overwritten.
+     */
+    patchDynamicFields(leadId: string, patch: DynamicFieldsPatch): Promise<Lead>;
 }

@@ -3,6 +3,7 @@ import {
     AssignLeadPayload,
     CreateLeadFieldRequest,
     CreateLeadRequest,
+    DynamicFieldsPatch,
     GetLeadsParams,
     GetLeadsResponse,
     Lead,
@@ -55,6 +56,18 @@ export class LeadService {
 
     async createLeadField(leadField: CreateLeadFieldRequest): Promise<LeadField> {
         const response = await this.httpClient.post('/api/v1/leads/fields', leadField);
+        return response.data;
+    }
+
+    /**
+     * Partially update a lead's dynamicFields.
+     * Fields with source "FORM" are protected server-side and will not be overwritten.
+     */
+    async patchDynamicFields(leadId: string, patch: DynamicFieldsPatch): Promise<Lead> {
+        const response = await this.httpClient.patch(
+            `/api/v1/leads/${leadId}/dynamic-fields`,
+            patch
+        );
         return response.data;
     }
 }

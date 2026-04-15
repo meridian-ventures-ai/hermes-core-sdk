@@ -26,13 +26,15 @@ export interface CallLog {
     durationSeconds: number | null;
     preCallContext: PreCallContext | null;
     summary: string | null;
-    scheduledByUserId: string | null;
+    scheduledByUserId: number | null;
     createdAt: string;
     updatedAt: string;
 }
 export interface CallTranscript {
     id: string;
     callLogId: string;
+    /** Zero-based turn index used to order transcript lines correctly. */
+    turnIndex: number;
     role: string;
     content: string;
     timestamp: string;
