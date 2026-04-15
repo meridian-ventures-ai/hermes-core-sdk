@@ -82,10 +82,15 @@ export interface LeadField {
     order: number;
     question: string;
     tenantId: string;
+    flowType: string;
     createdAt: string;
     fieldName: string;
     updatedAt: string;
     fieldDetails: any;
+}
+export interface QualifyingField {
+    fieldName: string;
+    question: string;
 }
 export interface GetLeadsResponse {
     items: Lead[];

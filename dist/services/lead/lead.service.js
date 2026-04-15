@@ -21,6 +21,10 @@ class LeadService {
         const response = await this.httpClient.get('/api/v1/leads/fields');
         return response.data;
     }
+    async getQualifyingFields() {
+        const response = await this.httpClient.get('/api/v1/leads/fields/qualifying');
+        return response.data;
+    }
     async deleteLead(leadId) {
         await this.httpClient.delete(`/api/v1/leads/${leadId}`);
     }

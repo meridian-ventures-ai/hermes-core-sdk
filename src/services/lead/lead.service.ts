@@ -9,6 +9,7 @@ import {
     Lead,
     LeadField,
     LeadMapResponse,
+    QualifyingField,
 } from "./lead.types";
 
 export class LeadService {
@@ -31,6 +32,11 @@ export class LeadService {
 
     async getLeadFields(): Promise<LeadField[]> {
         const response = await this.httpClient.get('/api/v1/leads/fields');
+        return response.data;
+    }
+
+    async getQualifyingFields(): Promise<QualifyingField[]> {
+        const response = await this.httpClient.get('/api/v1/leads/fields/qualifying');
         return response.data;
     }
 
