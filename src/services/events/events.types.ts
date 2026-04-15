@@ -6,10 +6,15 @@ export interface QualifyingAgentCalledPayload {
   missingFieldsRemaining: number;
 }
 
-export interface ExtractionAgentPayload {
+/** payload = the trigger request (what was sent to the agent) */
+export interface ExtractionAgentRequestPayload {
+  leadId: string;
   sourceType: 'HERMES' | 'PHOENIX';
   sourceId: string;
-  leadId: string;
+}
+
+/** response = the agent output (what was extracted) */
+export interface ExtractionAgentResponse {
   extractedFields: Record<
     string,
     | { status: 'missed' }
@@ -53,10 +58,9 @@ export interface Event {
   eventType: string;
   entityType: string;
   entityId: string | null;
-  interactionType: 'HERMES' | 'PHOENIX' | null;
-  interactionId: string | null;
   title: string;
   payload: Record<string, unknown>;
+  response: Record<string, unknown> | null;
   metadata: Record<string, unknown> | null;
   createdAt: string;
 }
@@ -67,10 +71,9 @@ export interface CreateEventRequest {
   eventType: string;
   entityType?: string;
   entityId?: string;
-  interactionType?: 'HERMES' | 'PHOENIX';
-  interactionId?: string;
   title: string;
   payload: Record<string, unknown>;
+  response?: Record<string, unknown>;
   metadata?: Record<string, unknown>;
 }
 
