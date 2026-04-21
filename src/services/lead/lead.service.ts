@@ -3,11 +3,13 @@ import {
     AssignLeadPayload,
     CreateLeadFieldRequest,
     CreateLeadRequest,
+    DynamicFieldsPatch,
     GetLeadsParams,
     GetLeadsResponse,
     Lead,
     LeadField,
     LeadMapResponse,
+    QualifyingField,
 } from "./lead.types";
 
 export class LeadService {
@@ -33,6 +35,11 @@ export class LeadService {
         return response.data;
     }
 
+    async getQualifyingFields(): Promise<QualifyingField[]> {
+        const response = await this.httpClient.get('/api/v1/leads/fields/qualifying');
+        return response.data;
+    }
+
     async deleteLead(leadId: string): Promise<void> {
         await this.httpClient.delete(`/api/v1/leads/${leadId}`);
     }
@@ -55,6 +62,14 @@ export class LeadService {
 
     async createLeadField(leadField: CreateLeadFieldRequest): Promise<LeadField> {
         const response = await this.httpClient.post('/api/v1/leads/fields', leadField);
+        return response.data;
+    }
+
+    async patchDynamicFields(leadId: string, patch: DynamicFieldsPatch): Promise<Lead> {
+        const response = await this.httpClient.patch(
+            `/api/v1/leads/${leadId}/dynamic-fields`,
+            patch
+        );
         return response.data;
     }
 }

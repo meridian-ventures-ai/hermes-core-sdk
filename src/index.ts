@@ -6,5 +6,6 @@ export * from './services/analytics/analytics.types';
 export * from './services/escalation/escalation.types';
 export * from './services/calls/call.types';
 export * from './services/phoenix-analytics/phoenix-analytics.types';
+export * from './services/events/events.types';
 // Summary types moved to chat.types.ts - kept for backward compatibility
 export * from './config/sdk-config';

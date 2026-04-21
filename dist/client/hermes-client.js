@@ -12,6 +12,7 @@ const analytics_service_1 = require("../services/analytics/analytics.service");
 const phoenix_analytics_service_1 = require("../services/phoenix-analytics/phoenix-analytics.service");
 const escalation_service_1 = require("../services/escalation/escalation.service");
 const call_service_1 = require("../services/calls/call.service");
+const events_service_1 = require("../services/events/events.service");
 class HermesSDKError extends Error {
     constructor(message, statusCode, code, details) {
         super(message);
@@ -47,6 +48,7 @@ class HermesClient {
         this.phoenixAnalytics = new phoenix_analytics_service_1.PhoenixAnalyticsService(this.httpClient);
         this.escalations = new escalation_service_1.EscalationService(this.httpClient);
         this.calls = new call_service_1.CallService(this.httpClient);
+        this.events = new events_service_1.EventsService(this.httpClient);
     }
     /**
      * Set the access token (JWT) for authentication.

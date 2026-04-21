@@ -35,6 +35,7 @@ export interface CallLog {
 export interface CallTranscript {
     id: string;
     callLogId: string;
+    turnIndex: number;
     role: string;
     content: string;
     timestamp: string;
