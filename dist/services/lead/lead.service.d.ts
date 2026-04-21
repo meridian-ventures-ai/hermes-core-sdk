@@ -15,9 +15,5 @@ export declare class LeadService {
      *  @throws 404 if the lead is not found */
     assignLead(leadId: string, payload: AssignLeadPayload): Promise<Lead>;
     createLeadField(leadField: CreateLeadFieldRequest): Promise<LeadField>;
-    /**
-     * Partially update a lead's dynamicFields.
-     * Fields with source "FORM" are protected server-side and will not be overwritten.
-     */
     patchDynamicFields(leadId: string, patch: DynamicFieldsPatch): Promise<Lead>;
 }

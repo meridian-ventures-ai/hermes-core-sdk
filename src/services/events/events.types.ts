@@ -1,19 +1,15 @@
-// ── Payload shapes per event type ─────────────────────────────────────────────
-
 export interface QualifyingAgentCalledPayload {
   fieldAsked: string;
   turnNumber: number;
   missingFieldsRemaining: number;
 }
 
-/** payload = the trigger request (what was sent to the agent) */
 export interface ExtractionAgentRequestPayload {
   leadId: string;
   sourceType: 'HERMES' | 'PHOENIX';
   sourceId: string;
 }
 
-/** response = the agent output (what was extracted) */
 export interface ExtractionAgentResponse {
   extractedFields: Record<
     string,
@@ -50,8 +46,6 @@ export interface CallScheduledPayload {
   phoneNumber: string;
 }
 
-// ── Event entity ──────────────────────────────────────────────────────────────
-
 export interface Event {
   id: string;
   tenantId: string;
@@ -64,8 +58,6 @@ export interface Event {
   metadata: Record<string, unknown> | null;
   createdAt: string;
 }
-
-// ── Request / response types ──────────────────────────────────────────────────
 
 export interface CreateEventRequest {
   eventType: string;

@@ -65,10 +65,6 @@ export class LeadService {
         return response.data;
     }
 
-    /**
-     * Partially update a lead's dynamicFields.
-     * Fields with source "FORM" are protected server-side and will not be overwritten.
-     */
     async patchDynamicFields(leadId: string, patch: DynamicFieldsPatch): Promise<Lead> {
         const response = await this.httpClient.patch(
             `/api/v1/leads/${leadId}/dynamic-fields`,

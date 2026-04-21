@@ -3,13 +3,11 @@ export interface QualifyingAgentCalledPayload {
     turnNumber: number;
     missingFieldsRemaining: number;
 }
-/** payload = the trigger request (what was sent to the agent) */
 export interface ExtractionAgentRequestPayload {
     leadId: string;
     sourceType: 'HERMES' | 'PHOENIX';
     sourceId: string;
 }
-/** response = the agent output (what was extracted) */
 export interface ExtractionAgentResponse {
     extractedFields: Record<string, {
         status: 'missed';

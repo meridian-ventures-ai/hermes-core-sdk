@@ -35,7 +35,6 @@ export interface CallLog {
 export interface CallTranscript {
     id: string;
     callLogId: string;
-    /** Zero-based turn index used to order transcript lines correctly. */
     turnIndex: number;
     role: string;
     content: string;
