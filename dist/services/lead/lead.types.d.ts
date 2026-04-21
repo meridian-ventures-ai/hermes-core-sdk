@@ -23,34 +23,20 @@ export interface GetLeadsParams {
     sortBy?: string;
     sortDirn?: "asc" | "desc";
 }
-/**
- * Stats attached to a dynamicField written by the extraction agent.
- * Not present on form-filled fields.
- */
+
 export interface DynamicFieldStats {
     confidence: "HIGH" | "MEDIUM" | "LOW";
     version: number;
-    /** ID of the EXTRACTION_AGENT event that produced this value. Back-filled after event creation. */
     eventId?: string;
 }
-/**
- * A single entry in a lead's dynamicFields map.
- *
- * - source "FORM": written by the intake form; never overwritten by the extraction agent.
- * - source "EXTRACTION_AGENT": written by the post-session extraction agent; carries stats.
- * - source undefined: legacy entries that pre-date the source field.
- */
+
 export interface DynamicField {
     value: any;
     question?: string;
     source?: "FORM" | "EXTRACTION_AGENT";
     stats?: DynamicFieldStats;
 }
-/**
- * Patch payload for PATCH /leads/:leadId/dynamic-fields.
- * Keys are fieldNames; values are partial DynamicField updates.
- * The server skips fields whose existing source is "FORM".
- */
+
 export type DynamicFieldsPatch = Record<string, Omit<DynamicField, "question">>;
 interface Phone {
     countryCode: string;
