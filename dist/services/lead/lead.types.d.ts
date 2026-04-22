@@ -23,10 +23,21 @@ export interface GetLeadsParams {
     sortBy?: string;
     sortDirn?: "asc" | "desc";
 }
-interface DynamicField {
+
+export interface DynamicFieldStats {
+    confidence: "HIGH" | "MEDIUM" | "LOW";
+    version: number;
+    eventId?: string;
+}
+
+export interface DynamicField {
     value: any;
     question?: string;
+    source?: "FORM" | "EXTRACTION_AGENT";
+    stats?: DynamicFieldStats;
 }
+
+export type DynamicFieldsPatch = Record<string, Omit<DynamicField, "question">>;
 interface Phone {
     countryCode: string;
     phoneNumber: string;
@@ -57,10 +68,15 @@ export interface LeadField {
     order: number;
     question: string;
     tenantId: string;
+    flowType: string;
     createdAt: string;
     fieldName: string;
     updatedAt: string;
     fieldDetails: any;
+}
+export interface QualifyingField {
+    fieldName: string;
+    question: string;
 }
 export interface GetLeadsResponse {
     items: Lead[];

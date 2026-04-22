@@ -6,6 +6,7 @@ import { AnalyticsService } from "../services/analytics/analytics.service";
 import { PhoenixAnalyticsService } from "../services/phoenix-analytics/phoenix-analytics.service";
 import { EscalationService } from "../services/escalation/escalation.service";
 import { CallService } from "../services/calls/call.service";
+import { EventsService } from "../services/events/events.service";
 export declare class HermesSDKError extends Error {
     statusCode?: number | undefined;
     code?: string | undefined;
@@ -24,6 +25,7 @@ export declare class HermesClient {
     phoenixAnalytics: PhoenixAnalyticsService;
     escalations: EscalationService;
     calls: CallService;
+    events: EventsService;
     constructor(config: SDKConfig);
     /**
      * Set the access token (JWT) for authentication.

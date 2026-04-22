@@ -7,6 +7,7 @@ import { AnalyticsService } from "../services/analytics/analytics.service";
 import { PhoenixAnalyticsService } from "../services/phoenix-analytics/phoenix-analytics.service";
 import { EscalationService } from "../services/escalation/escalation.service";
 import { CallService } from "../services/calls/call.service";
+import { EventsService } from "../services/events/events.service";
 
 export class HermesSDKError extends Error {
     constructor(
@@ -32,6 +33,7 @@ export class HermesClient {
     public phoenixAnalytics: PhoenixAnalyticsService;
     public escalations: EscalationService;
     public calls: CallService;
+    public events: EventsService;
 
     constructor(config: SDKConfig) {
         this.config = config;
@@ -59,6 +61,7 @@ export class HermesClient {
         this.phoenixAnalytics = new PhoenixAnalyticsService(this.httpClient);
         this.escalations = new EscalationService(this.httpClient);
         this.calls = new CallService(this.httpClient);
+        this.events = new EventsService(this.httpClient);
     }
 
     /**
