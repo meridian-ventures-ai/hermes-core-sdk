@@ -21,6 +21,12 @@ class LeadService {
         const response = await this.httpClient.get('/api/v1/leads/fields');
         return response.data;
     }
+    /**
+     * Returns all lead fields with flowType === "QUALIFYING_QUESTION" for the
+     * authenticated tenant. These are stored in the same lead_fields table as
+     * form fields — this endpoint is a filtered read, not a separate resource.
+     * TODO: Remove this endpoint in hermes-core, directly use getLeadFields and filter by flowType client-side.
+     */
     async getQualifyingFields() {
         const response = await this.httpClient.get('/api/v1/leads/fields/qualifying');
         return response.data;
@@ -39,9 +45,19 @@ class LeadService {
         const response = await this.httpClient.patch(`/api/v1/leads/${leadId}/assign`, payload);
         return response.data;
     }
-    async createLeadField(leadField) {
-        const response = await this.httpClient.post('/api/v1/leads/fields', leadField);
+    async createLeadField(leadFields) {
+        const response = await this.httpClient.post('/api/v1/leads/fields', leadFields);
         return response.data;
+    }
+    async updateLeadField(fieldId, payload) {
+        const response = await this.httpClient.patch(`/api/v1/leads/fields/${fieldId}`, payload);
+        return response.data;
+    }
+    async deleteLeadField(fieldId) {
+        await this.httpClient.delete(`/api/v1/leads/fields/${fieldId}`);
+    }
+    async reorderLeadFields(orderedIds) {
+        await this.httpClient.patch('/api/v1/leads/fields/reorder', { orderedIds });
     }
     async patchDynamicFields(leadId, patch) {
         const response = await this.httpClient.patch(`/api/v1/leads/${leadId}/dynamic-fields`, patch);
