@@ -37,16 +37,12 @@ export interface DynamicFieldStats {
   eventId?: string;
 }
 
-
 export interface DynamicField {
   value: any;
   question?: string;
   source?: "FORM" | "EXTRACTION_AGENT";
   stats?: DynamicFieldStats;
 }
-
-export type DynamicFieldsPatch = Record<string, Omit<DynamicField, "question">>;
-
 interface Phone {
     countryCode: string;
     phoneNumber: string;
@@ -86,10 +82,13 @@ export interface LeadField {
     fieldDetails: any;
 }
 
-export interface QualifyingField {
-  fieldName: string;
-  question: string;
-}
+/**
+ * Qualifying fields are stored in the same lead_fields table as form fields.
+ * The only distinction is flowType === "QUALIFYING_QUESTION".
+ * fieldName is the permanent data key used by the qualifying and extraction
+ * agents — it cannot be changed after creation.
+ */
+export type QualifyingField = LeadField;
 
 export interface GetLeadsResponse {
     items: Lead[];
@@ -115,15 +114,24 @@ export interface CreateLeadRequest {
     }[];
 }
 
-
 export interface AssignLeadPayload {
     assignedTo: number | null;
 }
 
 export interface CreateLeadFieldRequest {
-  fieldName: string;
-  question: string;
-  type: string;
-  order: number;
-  fieldDetails: Record<string, any>;
+    fieldName: string;
+    question: string;
+    type: string;
+    order: number;
+    fieldDetails: Record<string, any>;
+    /** Defaults to "AGENTIC_CHAT_FORM_QUESTION" server-side if omitted. */
+    flowType?: string;
+}
+
+export interface UpdateLeadFieldRequest {
+    fieldName?: string;
+    question?: string;
+    type?: string;
+    order?: number;
+    fieldDetails?: Record<string, any>;
 }

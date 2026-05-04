@@ -3,13 +3,14 @@ import {
     AssignLeadPayload,
     CreateLeadFieldRequest,
     CreateLeadRequest,
-    DynamicFieldsPatch,
+    DynamicField,
     GetLeadsParams,
     GetLeadsResponse,
     Lead,
     LeadField,
     LeadMapResponse,
     QualifyingField,
+    UpdateLeadFieldRequest,
 } from "./lead.types";
 
 export class LeadService {
@@ -35,6 +36,12 @@ export class LeadService {
         return response.data;
     }
 
+    /**
+     * Returns all lead fields with flowType === "QUALIFYING_QUESTION" for the
+     * authenticated tenant. These are stored in the same lead_fields table as
+     * form fields — this endpoint is a filtered read, not a separate resource.
+     * TODO: Remove this endpoint in hermes-core, directly use getLeadFields and filter by flowType client-side.
+     */
     async getQualifyingFields(): Promise<QualifyingField[]> {
         const response = await this.httpClient.get('/api/v1/leads/fields/qualifying');
         return response.data;
@@ -60,12 +67,25 @@ export class LeadService {
         return response.data;
     }
 
-    async createLeadField(leadField: CreateLeadFieldRequest): Promise<LeadField> {
-        const response = await this.httpClient.post('/api/v1/leads/fields', leadField);
+    async createLeadField(leadFields: CreateLeadFieldRequest[]): Promise<LeadField[]> {
+        const response = await this.httpClient.post('/api/v1/leads/fields', leadFields);
         return response.data;
     }
 
-    async patchDynamicFields(leadId: string, patch: DynamicFieldsPatch): Promise<Lead> {
+    async updateLeadField(fieldId: string, payload: UpdateLeadFieldRequest): Promise<LeadField> {
+        const response = await this.httpClient.patch(`/api/v1/leads/fields/${fieldId}`, payload);
+        return response.data;
+    }
+
+    async deleteLeadField(fieldId: string): Promise<void> {
+        await this.httpClient.delete(`/api/v1/leads/fields/${fieldId}`);
+    }
+
+    async reorderLeadFields(orderedIds: string[]): Promise<void> {
+        await this.httpClient.patch('/api/v1/leads/fields/reorder', { orderedIds });
+    }
+
+    async patchDynamicFields(leadId: string, patch: Record<string, DynamicField>): Promise<Lead> {
         const response = await this.httpClient.patch(
             `/api/v1/leads/${leadId}/dynamic-fields`,
             patch
