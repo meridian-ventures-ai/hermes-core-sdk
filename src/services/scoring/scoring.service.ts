@@ -1,5 +1,7 @@
 import { AxiosInstance } from 'axios';
 import {
+  ApplyExtractionScoresRequest,
+  ApplyExtractionScoresResponse,
   LeadScoringResult,
   PreviewScoringRequest,
   ScoreLeadRequest,
@@ -52,6 +54,17 @@ export class ScoringService {
   ): Promise<ScoreLeadResponse> {
     const response = await this.httpClient.post(
       `/api/v1/scoring/leads/${leadId}/score`,
+      request,
+    );
+    return response.data;
+  }
+
+  async applyExtractionScores(
+    leadId: string,
+    request: ApplyExtractionScoresRequest,
+  ): Promise<ApplyExtractionScoresResponse> {
+    const response = await this.httpClient.post(
+      `/api/v1/scoring/leads/${leadId}/extraction-scores`,
       request,
     );
     return response.data;

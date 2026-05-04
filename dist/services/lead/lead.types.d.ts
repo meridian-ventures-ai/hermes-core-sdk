@@ -38,7 +38,6 @@ export interface DynamicField {
     source?: "FORM" | "EXTRACTION_AGENT";
     stats?: DynamicFieldStats;
 }
-export type DynamicFieldsPatch = Record<string, Omit<DynamicField, "question">>;
 interface Phone {
     countryCode: string;
     phoneNumber: string;

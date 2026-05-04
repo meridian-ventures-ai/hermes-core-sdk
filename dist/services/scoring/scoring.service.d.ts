@@ -1,5 +1,5 @@
 import { AxiosInstance } from 'axios';
-import { LeadScoringResult, PreviewScoringRequest, ScoreLeadRequest, ScoreLeadResponse, ScoringConfig, ScoringConfigRow } from './scoring.types';
+import { ApplyExtractionScoresRequest, ApplyExtractionScoresResponse, LeadScoringResult, PreviewScoringRequest, ScoreLeadRequest, ScoreLeadResponse, ScoringConfig, ScoringConfigRow } from './scoring.types';
 export declare class ScoringService {
     private httpClient;
     constructor(httpClient: AxiosInstance);
@@ -24,4 +24,9 @@ export declare class ScoringService {
      * stored config.
      */
     scoreLead(leadId: string, request?: ScoreLeadRequest): Promise<ScoreLeadResponse>;
+    /**
+     * Blend extraction-agent scores (engagement + sentiment) into the lead's
+     * final score and persist. Called after PHOENIX interactions complete.
+     */
+    applyExtractionScores(leadId: string, request: ApplyExtractionScoresRequest): Promise<ApplyExtractionScoresResponse>;
 }

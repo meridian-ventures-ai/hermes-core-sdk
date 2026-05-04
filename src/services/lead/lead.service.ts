@@ -3,7 +3,7 @@ import {
     AssignLeadPayload,
     CreateLeadFieldRequest,
     CreateLeadRequest,
-    DynamicFieldsPatch,
+    DynamicField,
     GetLeadsParams,
     GetLeadsResponse,
     Lead,
@@ -85,7 +85,7 @@ export class LeadService {
         await this.httpClient.patch('/api/v1/leads/fields/reorder', { orderedIds });
     }
 
-    async patchDynamicFields(leadId: string, patch: DynamicFieldsPatch): Promise<Lead> {
+    async patchDynamicFields(leadId: string, patch: Record<string, DynamicField>): Promise<Lead> {
         const response = await this.httpClient.patch(
             `/api/v1/leads/${leadId}/dynamic-fields`,
             patch

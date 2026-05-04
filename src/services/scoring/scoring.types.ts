@@ -111,6 +111,28 @@ export interface LeadScoringResult {
   algorithmType: 'RULE_BASED';
   scoringConfigId?: string;
   scoringConfigVersion?: number;
+  maxQualificationScore?: number;
+  extractionScores?: {
+    engagementScore: number;
+    sentimentScore: number;
+    sentimentLabel: string;
+    qualifyingCount: number;
+    totalQualifyingCount: number;
+  };
+}
+
+export interface ApplyExtractionScoresRequest {
+  engagementScore: number;
+  sentimentScore: number;
+  sentimentLabel: string;
+  qualifyingCount: number;
+  totalQualifyingCount: number;
+}
+
+export interface ApplyExtractionScoresResponse {
+  scored: boolean;
+  reason?: string;
+  result?: LeadScoringResult;
 }
 
 export type ScoringResult = LeadScoringResult;
