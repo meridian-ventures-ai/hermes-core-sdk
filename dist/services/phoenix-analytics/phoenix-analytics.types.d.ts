@@ -5,4 +5,6 @@ export interface PhoenixAnalyticsMetrics {
     responseAccuracy: number;
     avgCallDurationSeconds: number;
     responseLatencyMs: number;
+    firstCallEffectiveness: number | null;
+    leadQualificationRate: number | null;
 }

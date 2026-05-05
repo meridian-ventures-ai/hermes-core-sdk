@@ -24,9 +24,5 @@ export declare class ScoringService {
      * stored config.
      */
     scoreLead(leadId: string, request?: ScoreLeadRequest): Promise<ScoreLeadResponse>;
-    /**
-     * Blend extraction-agent scores (engagement + sentiment) into the lead's
-     * final score and persist. Called after PHOENIX interactions complete.
-     */
     applyExtractionScores(leadId: string, request: ApplyExtractionScoresRequest): Promise<ApplyExtractionScoresResponse>;
 }

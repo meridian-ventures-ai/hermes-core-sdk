@@ -69,7 +69,6 @@ export interface LeadScoringResult {
     algorithmType: 'RULE_BASED';
     scoringConfigId?: string;
     scoringConfigVersion?: number;
-    /** Sum of (dimension.weight × max rule score) across all dimensions. */
     maxQualificationScore?: number;
     extractionScores?: {
         engagementScore: number;
@@ -80,9 +79,7 @@ export interface LeadScoringResult {
     };
 }
 export interface ApplyExtractionScoresRequest {
-    /** Qualifying coverage: (capturedFields / totalFields) × 100 */
     engagementScore: number;
-    /** LLM-derived sentiment score (0–100) */
     sentimentScore: number;
     sentimentLabel: string;
     qualifyingCount: number;

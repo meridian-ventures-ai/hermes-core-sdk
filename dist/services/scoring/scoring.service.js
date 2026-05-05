@@ -40,10 +40,6 @@ class ScoringService {
         const response = await this.httpClient.post(`/api/v1/scoring/leads/${leadId}/score`, request);
         return response.data;
     }
-    /**
-     * Blend extraction-agent scores (engagement + sentiment) into the lead's
-     * final score and persist. Called after PHOENIX interactions complete.
-     */
     async applyExtractionScores(leadId, request) {
         const response = await this.httpClient.post(`/api/v1/scoring/leads/${leadId}/extraction-scores`, request);
         return response.data;
