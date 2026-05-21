@@ -1,5 +1,5 @@
 import { AxiosInstance } from "axios";
-import { AssignLeadPayload, CreateLeadFieldRequest, CreateLeadRequest, DynamicField, GetLeadsParams, GetLeadsResponse, Lead, LeadField, LeadMapResponse, QualifyingField, UpdateLeadFieldRequest } from "./lead.types";
+import { AssignLeadPayload, CreateLeadFieldRequest, CreateLeadRequest, DynamicField, GetLeadsParams, GetLeadsResponse, Lead, LeadField, LeadMapResponse, QualifyingField, UpdateLeadFieldRequest, UpdateLeadRequest } from "./lead.types";
 export declare class LeadService {
     private httpClient;
     constructor(httpClient: AxiosInstance);
@@ -25,4 +25,5 @@ export declare class LeadService {
     deleteLeadField(fieldId: string): Promise<void>;
     reorderLeadFields(orderedIds: string[]): Promise<void>;
     patchDynamicFields(leadId: string, patch: Record<string, DynamicField>): Promise<Lead>;
+    updateLead(leadId: string, payload: UpdateLeadRequest): Promise<Lead>;
 }
