@@ -135,3 +135,12 @@ export interface UpdateLeadFieldRequest {
     order?: number;
     fieldDetails?: Record<string, any>;
 }
+
+export interface UpdateLeadRequest {
+    leadScore?:           number | null;
+    leadPotential?:       string | null;
+    leadScoreBreakdown?:  Record<string, any> | null;
+    metadata?:            Record<string, any> | null;
+    status?:              string | null;
+    profileCompleteness?: number | null;
+}

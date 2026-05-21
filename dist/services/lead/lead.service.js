@@ -63,5 +63,9 @@ class LeadService {
         const response = await this.httpClient.patch(`/api/v1/leads/${leadId}/dynamic-fields`, patch);
         return response.data;
     }
+    async updateLead(leadId, payload) {
+        const response = await this.httpClient.patch(`/api/v1/leads/${leadId}`, payload);
+        return response.data;
+    }
 }
 exports.LeadService = LeadService;
