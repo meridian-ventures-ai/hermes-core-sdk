@@ -23,20 +23,21 @@ export interface GetLeadsParams {
     sortBy?: string;
     sortDirn?: "asc" | "desc";
 }
-
+/**
+ * Stats attached to a dynamicField written by the extraction agent.
+ * Not present on form-filled fields.
+ */
 export interface DynamicFieldStats {
     confidence: "HIGH" | "MEDIUM" | "LOW";
     version: number;
     eventId?: string;
 }
-
 export interface DynamicField {
     value: any;
     question?: string;
     source?: "FORM" | "EXTRACTION_AGENT";
     stats?: DynamicFieldStats;
 }
-
 export type DynamicFieldsPatch = Record<string, Omit<DynamicField, "question">>;
 interface Phone {
     countryCode: string;
