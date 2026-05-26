@@ -27,3 +27,4 @@ __exportStar(require("./services/phoenix-analytics/phoenix-analytics.types"), ex
 __exportStar(require("./services/events/events.types"), exports);
 // Summary types moved to chat.types.ts - kept for backward compatibility
 __exportStar(require("./config/sdk-config"), exports);
+__exportStar(require("./services/whatsapp-analytics/analytics.types"), exports);
