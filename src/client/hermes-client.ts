@@ -5,6 +5,7 @@ import { MessageService } from "../services/message/message.service";
 import { ChatService } from "../services/chat/chat.service";
 import { AnalyticsService } from "../services/analytics/analytics.service";
 import { PhoenixAnalyticsService } from "../services/phoenix-analytics/phoenix-analytics.service";
+import { WhatsAppAnalyticsService } from "../services/whatsapp-analytics/analytics.service";
 import { EscalationService } from "../services/escalation/escalation.service";
 import { CallService } from "../services/calls/call.service";
 import { EventsService } from "../services/events/events.service";
@@ -31,6 +32,7 @@ export class HermesClient {
     public messages: MessageService;
     public analytics: AnalyticsService;
     public phoenixAnalytics: PhoenixAnalyticsService;
+    public whatsappAnalytics: WhatsAppAnalyticsService;
     public escalations: EscalationService;
     public calls: CallService;
     public events: EventsService;
@@ -59,6 +61,7 @@ export class HermesClient {
         this.messages = new MessageService(this.httpClient);
         this.analytics = new AnalyticsService(this.httpClient);
         this.phoenixAnalytics = new PhoenixAnalyticsService(this.httpClient);
+        this.whatsappAnalytics = new WhatsAppAnalyticsService(this.httpClient);
         this.escalations = new EscalationService(this.httpClient);
         this.calls = new CallService(this.httpClient);
         this.events = new EventsService(this.httpClient);
