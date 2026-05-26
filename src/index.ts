@@ -10,3 +10,4 @@ export * from './services/events/events.types';
 export * from './services/scoring/scoring.types';
 // Summary types moved to chat.types.ts - kept for backward compatibility
 export * from './config/sdk-config';
+export * from './services/whatsapp-analytics/analytics.types';
