@@ -75,10 +75,13 @@ export interface LeadField {
     updatedAt: string;
     fieldDetails: any;
 }
-export interface QualifyingField {
-    fieldName: string;
-    question: string;
-}
+/**
+ * Qualifying fields are stored in the same lead_fields table as form fields.
+ * The only distinction is flowType === "QUALIFYING_QUESTION".
+ * fieldName is the permanent data key used by the qualifying and extraction
+ * agents — it cannot be changed after creation.
+ */
+export type QualifyingField = LeadField;
 export interface GetLeadsResponse {
     items: Lead[];
     page: number;
@@ -110,5 +113,14 @@ export interface CreateLeadFieldRequest {
     type: string;
     order: number;
     fieldDetails: Record<string, any>;
+    /** Defaults to "AGENTIC_CHAT_FORM_QUESTION" server-side if omitted. */
+    flowType?: string;
+}
+export interface UpdateLeadFieldRequest {
+    fieldName?: string;
+    question?: string;
+    type?: string;
+    order?: number;
+    fieldDetails?: Record<string, any>;
 }
 export {};
