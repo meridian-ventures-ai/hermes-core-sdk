@@ -7,6 +7,7 @@ import { PhoenixAnalyticsService } from "../services/phoenix-analytics/phoenix-a
 import { EscalationService } from "../services/escalation/escalation.service";
 import { CallService } from "../services/calls/call.service";
 import { EventsService } from "../services/events/events.service";
+import { WhatsAppAnalyticsService } from "../services/whatsapp-analytics/analytics.service";
 export declare class HermesSDKError extends Error {
     statusCode?: number | undefined;
     code?: string | undefined;
@@ -26,6 +27,7 @@ export declare class HermesClient {
     escalations: EscalationService;
     calls: CallService;
     events: EventsService;
+    whatsappAnalytics: WhatsAppAnalyticsService;
     constructor(config: SDKConfig);
     /**
      * Set the access token (JWT) for authentication.
