@@ -67,5 +67,10 @@ class LeadService {
         const response = await this.httpClient.patch(`/api/v1/leads/${leadId}`, payload);
         return response.data;
     }
+    /** Merges into `lead.metadata.reviewer_feedback` without touching other metadata keys. Pass empty/whitespace to clear. */
+    async updateReviewerFeedback(leadId, payload) {
+        const response = await this.httpClient.patch(`/api/v1/leads/${leadId}/reviewer-feedback`, payload);
+        return response.data;
+    }
 }
 exports.LeadService = LeadService;
