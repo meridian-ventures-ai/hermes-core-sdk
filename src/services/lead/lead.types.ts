@@ -144,3 +144,6 @@ export interface UpdateLeadRequest {
     status?:              string | null;
     profileCompleteness?: number | null;
 }
+export interface UpdateReviewerFeedbackPayload {
+    feedback: string;
+}

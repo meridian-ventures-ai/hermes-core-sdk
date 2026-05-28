@@ -1,5 +1,5 @@
 import { AxiosInstance } from "axios";
-import { AssignLeadPayload, CreateLeadFieldRequest, CreateLeadRequest, DynamicField, GetLeadsParams, GetLeadsResponse, Lead, LeadField, LeadMapResponse, QualifyingField, UpdateLeadFieldRequest, UpdateLeadRequest } from "./lead.types";
+import { AssignLeadPayload, CreateLeadFieldRequest, CreateLeadRequest, DynamicField, GetLeadsParams, GetLeadsResponse, Lead, LeadField, LeadMapResponse, QualifyingField, UpdateLeadFieldRequest, UpdateLeadRequest, UpdateReviewerFeedbackPayload } from "./lead.types";
 export declare class LeadService {
     private httpClient;
     constructor(httpClient: AxiosInstance);
@@ -26,4 +26,6 @@ export declare class LeadService {
     reorderLeadFields(orderedIds: string[]): Promise<void>;
     patchDynamicFields(leadId: string, patch: Record<string, DynamicField>): Promise<Lead>;
     updateLead(leadId: string, payload: UpdateLeadRequest): Promise<Lead>;
+    /** Merges into `lead.metadata.reviewer_feedback` without touching other metadata keys. Pass empty/whitespace to clear. */
+    updateReviewerFeedback(leadId: string, payload: UpdateReviewerFeedbackPayload): Promise<Lead>;
 }
