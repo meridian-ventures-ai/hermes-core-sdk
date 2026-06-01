@@ -9,6 +9,7 @@ import { WhatsAppAnalyticsService } from "../services/whatsapp-analytics/analyti
 import { EscalationService } from "../services/escalation/escalation.service";
 import { CallService } from "../services/calls/call.service";
 import { EventsService } from "../services/events/events.service";
+import { ScoringService } from "../services/scoring/scoring.service";
 
 export class HermesSDKError extends Error {
     constructor(
@@ -36,6 +37,7 @@ export class HermesClient {
     public escalations: EscalationService;
     public calls: CallService;
     public events: EventsService;
+    public scoring: ScoringService;
 
     constructor(config: SDKConfig) {
         this.config = config;
@@ -65,6 +67,7 @@ export class HermesClient {
         this.escalations = new EscalationService(this.httpClient);
         this.calls = new CallService(this.httpClient);
         this.events = new EventsService(this.httpClient);
+        this.scoring = new ScoringService(this.httpClient);
     }
 
     /**

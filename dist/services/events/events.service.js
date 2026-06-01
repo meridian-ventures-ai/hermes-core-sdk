@@ -19,5 +19,13 @@ class EventsService {
         const data = response.data;
         return Array.isArray(data) ? data : [];
     }
+    async getExtractionEvents(entityId, limit) {
+        const params = new URLSearchParams({ eventType: 'EXTRACTION_AGENT' });
+        if (limit !== undefined)
+            params.set('limit', String(limit));
+        const response = await this.httpClient.get(`/api/v1/events/entity/${entityId}?${params.toString()}`);
+        const data = response.data;
+        return Array.isArray(data) ? data : [];
+    }
 }
 exports.EventsService = EventsService;

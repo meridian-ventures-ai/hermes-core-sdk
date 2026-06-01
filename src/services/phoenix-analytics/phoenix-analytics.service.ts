@@ -6,7 +6,9 @@ const EMPTY_METRICS: PhoenixAnalyticsMetrics = {
     pickupRate: 0,
     responseAccuracy: 0,
     avgCallDurationSeconds: 0,
-    responseLatencyMs: 0
+    responseLatencyMs: 0,
+    firstCallEffectiveness: null,
+    leadQualificationRate: null,
 };
 
 export class PhoenixAnalyticsService {

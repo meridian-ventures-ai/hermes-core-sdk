@@ -3,7 +3,7 @@ import {
     AssignLeadPayload,
     CreateLeadFieldRequest,
     CreateLeadRequest,
-    DynamicFieldsPatch,
+    DynamicField,
     GetLeadsParams,
     GetLeadsResponse,
     Lead,
@@ -11,6 +11,8 @@ import {
     LeadMapResponse,
     QualifyingField,
     UpdateLeadFieldRequest,
+    UpdateLeadRequest,
+    UpdateReviewerFeedbackPayload,
 } from "./lead.types";
 
 export class LeadService {
@@ -85,10 +87,30 @@ export class LeadService {
         await this.httpClient.patch('/api/v1/leads/fields/reorder', { orderedIds });
     }
 
-    async patchDynamicFields(leadId: string, patch: DynamicFieldsPatch): Promise<Lead> {
+    async patchDynamicFields(leadId: string, patch: Record<string, DynamicField>): Promise<Lead> {
         const response = await this.httpClient.patch(
             `/api/v1/leads/${leadId}/dynamic-fields`,
             patch
+        );
+        return response.data;
+    }
+
+    async updateLead(leadId: string, payload: UpdateLeadRequest): Promise<Lead> {
+        const response = await this.httpClient.patch(
+            `/api/v1/leads/${leadId}`,
+            payload
+        );
+        return response.data;
+    }
+
+    /** Merges into `lead.metadata.reviewer_feedback` without touching other metadata keys. Pass empty/whitespace to clear. */
+    async updateReviewerFeedback(
+        leadId: string,
+        payload: UpdateReviewerFeedbackPayload,
+    ): Promise<Lead> {
+        const response = await this.httpClient.patch(
+            `/api/v1/leads/${leadId}/reviewer-feedback`,
+            payload,
         );
         return response.data;
     }

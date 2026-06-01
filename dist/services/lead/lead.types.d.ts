@@ -38,7 +38,6 @@ export interface DynamicField {
     source?: "FORM" | "EXTRACTION_AGENT";
     stats?: DynamicFieldStats;
 }
-export type DynamicFieldsPatch = Record<string, Omit<DynamicField, "question">>;
 interface Phone {
     countryCode: string;
     phoneNumber: string;
@@ -122,5 +121,16 @@ export interface UpdateLeadFieldRequest {
     type?: string;
     order?: number;
     fieldDetails?: Record<string, any>;
+}
+export interface UpdateLeadRequest {
+    leadScore?: number | null;
+    leadPotential?: string | null;
+    leadScoreBreakdown?: Record<string, any> | null;
+    metadata?: Record<string, any> | null;
+    status?: string | null;
+    profileCompleteness?: number | null;
+}
+export interface UpdateReviewerFeedbackPayload {
+    feedback: string;
 }
 export {};

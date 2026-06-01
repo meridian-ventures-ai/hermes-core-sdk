@@ -6,4 +6,5 @@ export declare class EventsService {
     createEvent(data: CreateEventRequest): Promise<Event>;
     getEventsByEntity(entityId: string): Promise<Event[]>;
     getEventsByInteraction(interactionId: string): Promise<Event[]>;
+    getExtractionEvents(entityId: string, limit?: number): Promise<Event[]>;
 }

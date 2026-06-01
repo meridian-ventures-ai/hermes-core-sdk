@@ -6,7 +6,9 @@ const EMPTY_METRICS = {
     pickupRate: 0,
     responseAccuracy: 0,
     avgCallDurationSeconds: 0,
-    responseLatencyMs: 0
+    responseLatencyMs: 0,
+    firstCallEffectiveness: null,
+    leadQualificationRate: null,
 };
 class PhoenixAnalyticsService {
     constructor(httpClient) {
