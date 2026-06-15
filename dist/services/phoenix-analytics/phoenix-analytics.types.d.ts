@@ -7,4 +7,9 @@ export interface PhoenixAnalyticsMetrics {
     responseLatencyMs: number;
     firstCallEffectiveness: number | null;
     leadQualificationRate: number | null;
+    completedInterviews: number | null;
+    incompleteInterviews: number | null;
+    approvedCandidates: number | null;
+    rejectedCandidates: number | null;
+    npsScore: number;
 }
