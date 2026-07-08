@@ -12,4 +12,12 @@ export interface PhoenixAnalyticsMetrics {
     approvedCandidates: number | null;
     rejectedCandidates: number | null;
     npsScore: number;
+    uniqueLeadsCalled: number | null;
+    truePickupRate: number | null;
+    meaningfulCallRate: number | null;
+}
+export interface PhoenixReachSummary {
+    uniqueLeadsCalled: number;
+    truePickupRate: number | null;
+    meaningfulCallRate: number | null;
 }

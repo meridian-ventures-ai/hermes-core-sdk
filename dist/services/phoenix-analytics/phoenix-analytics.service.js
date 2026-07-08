@@ -14,6 +14,14 @@ const EMPTY_METRICS = {
     approvedCandidates: 0,
     rejectedCandidates: 0,
     npsScore: 0,
+    uniqueLeadsCalled: null,
+    truePickupRate: null,
+    meaningfulCallRate: null,
+};
+const EMPTY_REACH_SUMMARY = {
+    uniqueLeadsCalled: 0,
+    truePickupRate: null,
+    meaningfulCallRate: null,
 };
 class PhoenixAnalyticsService {
     constructor(httpClient) {
@@ -34,6 +42,11 @@ class PhoenixAnalyticsService {
         const url = `/api/v1/analytics/phoenix/breakdown?from=${fromDate}&to=${toDate}`;
         const response = await this.httpClient.get(url);
         return response.data ?? [];
+    }
+    async getReachSummary(fromDate, toDate) {
+        const url = `/api/v1/analytics/phoenix/reach-summary?from=${fromDate}&to=${toDate}`;
+        const response = await this.httpClient.get(url);
+        return response.data ?? EMPTY_REACH_SUMMARY;
     }
     async calculateMetrics(date) {
         const url = date
