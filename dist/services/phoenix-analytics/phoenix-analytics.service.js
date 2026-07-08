@@ -18,7 +18,7 @@ const EMPTY_METRICS = {
     truePickupRate: null,
     meaningfulCallRate: null,
 };
-const EMPTY_REACH_SUMMARY = {
+const EMPTY_CALL_EFFECTIVENESS = {
     uniqueLeadsCalled: 0,
     truePickupRate: null,
     meaningfulCallRate: null,
@@ -43,10 +43,10 @@ class PhoenixAnalyticsService {
         const response = await this.httpClient.get(url);
         return response.data ?? [];
     }
-    async getReachSummary(fromDate, toDate) {
-        const url = `/api/v1/analytics/phoenix/reach-summary?from=${fromDate}&to=${toDate}`;
+    async getCallEffectiveness(fromDate, toDate) {
+        const url = `/api/v1/analytics/phoenix/call-effectiveness?from=${fromDate}&to=${toDate}`;
         const response = await this.httpClient.get(url);
-        return response.data ?? EMPTY_REACH_SUMMARY;
+        return response.data ?? EMPTY_CALL_EFFECTIVENESS;
     }
     async calculateMetrics(date) {
         const url = date
