@@ -2,6 +2,7 @@ import { AxiosInstance } from "axios";
 import {
   PhoenixAnalyticsMetrics,
   PhoenixCallEffectiveness,
+  PhoenixCallEffectivenessDay,
 } from "./phoenix-analytics.types";
 
 const EMPTY_METRICS: PhoenixAnalyticsMetrics = {
@@ -17,9 +18,6 @@ const EMPTY_METRICS: PhoenixAnalyticsMetrics = {
   approvedCandidates: 0,
   rejectedCandidates: 0,
   npsScore: 0,
-  uniqueLeadsCalled: null,
-  truePickupRate: null,
-  meaningfulCallRate: null,
 };
 
 const EMPTY_CALL_EFFECTIVENESS: PhoenixCallEffectiveness = {
@@ -65,6 +63,16 @@ export class PhoenixAnalyticsService {
       url,
     );
     return response.data ?? EMPTY_CALL_EFFECTIVENESS;
+  }
+
+  async getCallEffectivenessBreakdown(
+    fromDate: string,
+    toDate: string,
+  ): Promise<PhoenixCallEffectivenessDay[]> {
+    const url = `/api/v1/analytics/phoenix/call-effectiveness/breakdown?from=${fromDate}&to=${toDate}`;
+    const response =
+      await this.httpClient.get<PhoenixCallEffectivenessDay[]>(url);
+    return response.data ?? [];
   }
 
   async calculateMetrics(date?: string): Promise<PhoenixAnalyticsMetrics> {
