@@ -12,9 +12,6 @@ export interface PhoenixAnalyticsMetrics {
   approvedCandidates: number | null;
   rejectedCandidates: number | null;
   npsScore: number;
-  uniqueLeadsCalled: number | null;
-  truePickupRate: number | null;
-  meaningfulCallRate: number | null;
 }
 
 // Period totals for the outreach cards — unique leads and pick-up are distinct per
@@ -23,4 +20,9 @@ export interface PhoenixCallEffectiveness {
   uniqueLeadsCalled: number;
   truePickupRate: number | null;
   meaningfulCallRate: number | null;
+}
+
+// One trend point: the same three metrics for a single day.
+export interface PhoenixCallEffectivenessDay extends PhoenixCallEffectiveness {
+  date: string;
 }
