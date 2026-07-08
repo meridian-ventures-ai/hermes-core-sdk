@@ -16,7 +16,7 @@ export interface PhoenixAnalyticsMetrics {
     truePickupRate: number | null;
     meaningfulCallRate: number | null;
 }
-export interface PhoenixReachSummary {
+export interface PhoenixCallEffectiveness {
     uniqueLeadsCalled: number;
     truePickupRate: number | null;
     meaningfulCallRate: number | null;

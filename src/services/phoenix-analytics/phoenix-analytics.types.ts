@@ -19,7 +19,7 @@ export interface PhoenixAnalyticsMetrics {
 
 // Period totals for the outreach cards — unique leads and pick-up are distinct per
 // lead over the range, so they come from a dedicated endpoint, not summed daily rows.
-export interface PhoenixReachSummary {
+export interface PhoenixCallEffectiveness {
   uniqueLeadsCalled: number;
   truePickupRate: number | null;
   meaningfulCallRate: number | null;
