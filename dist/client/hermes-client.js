@@ -11,6 +11,7 @@ const chat_service_1 = require("../services/chat/chat.service");
 const analytics_service_1 = require("../services/analytics/analytics.service");
 const phoenix_analytics_service_1 = require("../services/phoenix-analytics/phoenix-analytics.service");
 const analytics_service_2 = require("../services/whatsapp-analytics/analytics.service");
+const link_analytics_service_1 = require("../services/link-analytics/link-analytics.service");
 const escalation_service_1 = require("../services/escalation/escalation.service");
 const call_service_1 = require("../services/calls/call.service");
 const events_service_1 = require("../services/events/events.service");
@@ -49,6 +50,7 @@ class HermesClient {
         this.analytics = new analytics_service_1.AnalyticsService(this.httpClient);
         this.phoenixAnalytics = new phoenix_analytics_service_1.PhoenixAnalyticsService(this.httpClient);
         this.whatsappAnalytics = new analytics_service_2.WhatsAppAnalyticsService(this.httpClient);
+        this.linkAnalytics = new link_analytics_service_1.LinkAnalyticsService(this.httpClient);
         this.escalations = new escalation_service_1.EscalationService(this.httpClient);
         this.calls = new call_service_1.CallService(this.httpClient);
         this.events = new events_service_1.EventsService(this.httpClient);
