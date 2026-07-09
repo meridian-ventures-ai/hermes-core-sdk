@@ -10,3 +10,4 @@ export * from './services/events/events.types';
 export * from './services/scoring/scoring.types';
 export * from './config/sdk-config';
 export * from './services/whatsapp-analytics/analytics.types';
+export * from './services/link-analytics/link-analytics.types';
