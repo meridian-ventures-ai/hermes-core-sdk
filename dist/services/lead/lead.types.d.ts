@@ -10,6 +10,16 @@ export interface LeadMapResponse {
     chats: LeadMapChatItem[];
     callLogs: CallLog[];
 }
+/**
+ * A single CRM lead-table column filter. `contains` is a case-insensitive
+ * substring match for text columns (name/email); `in` is a multi-select match.
+ * Fields that aren't real lead columns are matched against dynamic_fields.
+ */
+export interface LeadColumnFilter {
+    field: string;
+    op: "contains" | "in";
+    values: string[];
+}
 export interface GetLeadsParams {
     limit?: number;
     offset?: number;
@@ -22,6 +32,8 @@ export interface GetLeadsParams {
     courseType?: string;
     sortBy?: string;
     sortDirn?: "asc" | "desc";
+    /** Per-column filters, ANDed together. Serialized to JSON on the wire. */
+    filters?: LeadColumnFilter[];
 }
 /**
  * Stats attached to a dynamicField written by the extraction agent.
