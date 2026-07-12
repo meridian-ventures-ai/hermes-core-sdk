@@ -11,9 +11,8 @@ export interface LeadMapResponse {
     callLogs: CallLog[];
 }
 /**
- * A single CRM lead-table column filter. `contains` is a case-insensitive
- * substring match for text columns (name/email); `in` is a multi-select match.
- * Fields that aren't real lead columns are matched against dynamic_fields.
+ * One CRM lead-table column filter. `contains` is a case-insensitive substring
+ * match, `in` is a multi-select match.
  */
 export interface LeadColumnFilter {
     field: string;
