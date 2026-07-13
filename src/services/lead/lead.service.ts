@@ -30,10 +30,7 @@ export class LeadService {
         return response.data;
     }
 
-    /**
-     * Distinct values currently present for a single column, used to populate the
-     * CRM filter dropdowns so they only offer options that exist in the data.
-     */
+    /** Distinct values present for a column, for the CRM filter dropdowns. */
     async getLeadFieldValues(field: string): Promise<string[]> {
         const response = await this.httpClient.get("/api/v1/leads/field-values", {
             params: { field },

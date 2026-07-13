@@ -4,10 +4,7 @@ export declare class LeadService {
     private httpClient;
     constructor(httpClient: AxiosInstance);
     getLeads(params?: GetLeadsParams): Promise<GetLeadsResponse>;
-    /**
-     * Distinct values currently present for a single column, used to populate the
-     * CRM filter dropdowns so they only offer options that exist in the data.
-     */
+    /** Distinct values present for a column, for the CRM filter dropdowns. */
     getLeadFieldValues(field: string): Promise<string[]>;
     getLead(leadId: string): Promise<Lead>;
     getLeadJourney(leadId: string): Promise<LeadMapResponse>;
