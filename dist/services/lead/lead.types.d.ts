@@ -10,10 +10,7 @@ export interface LeadMapResponse {
     chats: LeadMapChatItem[];
     callLogs: CallLog[];
 }
-/**
- * One CRM lead-table column filter. `contains` is a case-insensitive substring
- * match, `in` is a multi-select match.
- */
+/** A CRM lead-table column filter: `contains` for text, `in` for multi-select. */
 export interface LeadColumnFilter {
     field: string;
     op: "contains" | "in";
