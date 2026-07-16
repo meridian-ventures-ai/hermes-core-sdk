@@ -13,6 +13,13 @@ export interface LeadMapResponse {
     callLogs: CallLog[];
 }
 
+/** A CRM lead-table column filter: `contains` for text, `in` for multi-select. */
+export interface LeadColumnFilter {
+    field: string;
+    op: "contains" | "in";
+    values: string[];
+}
+
 export interface GetLeadsParams {
     limit?: number;
     offset?: number;
@@ -25,6 +32,8 @@ export interface GetLeadsParams {
     courseType?: string;
     sortBy?: string;
     sortDirn?: "asc" | "desc";
+    /** Per-column filters, ANDed together. Serialized to JSON on the wire. */
+    filters?: LeadColumnFilter[];
 }
 
 /**
