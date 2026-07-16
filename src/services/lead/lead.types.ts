@@ -152,6 +152,11 @@ export interface UpdateLeadRequest {
     metadata?:            Record<string, any> | null;
     status?:              string | null;
     profileCompleteness?: number | null;
+    // Manual profile edits: editable contact columns plus a map of dynamic
+    // form-field edits keyed by fieldName.
+    email?:               string | null;
+    phone?:               Phone | null;
+    fields?:              Record<string, unknown>;
 }
 export interface UpdateReviewerFeedbackPayload {
     feedback: string;

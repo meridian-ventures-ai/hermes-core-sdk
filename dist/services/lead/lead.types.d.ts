@@ -137,6 +137,9 @@ export interface UpdateLeadRequest {
     metadata?: Record<string, any> | null;
     status?: string | null;
     profileCompleteness?: number | null;
+    email?: string | null;
+    phone?: Phone | null;
+    fields?: Record<string, unknown>;
 }
 export interface UpdateReviewerFeedbackPayload {
     feedback: string;
