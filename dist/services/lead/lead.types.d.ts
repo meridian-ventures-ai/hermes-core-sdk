@@ -43,8 +43,10 @@ export interface DynamicFieldStats {
 export interface DynamicField {
     value: any;
     question?: string;
-    source?: "FORM" | "EXTRACTION_AGENT";
+    source?: "FORM" | "EXTRACTION_AGENT" | "MANUAL";
     stats?: DynamicFieldStats;
+    editedBy?: string | null;
+    editedAt?: string;
 }
 interface Phone {
     countryCode: string;
@@ -137,6 +139,9 @@ export interface UpdateLeadRequest {
     metadata?: Record<string, any> | null;
     status?: string | null;
     profileCompleteness?: number | null;
+    email?: string | null;
+    phone?: Phone | null;
+    fields?: Record<string, unknown>;
 }
 export interface UpdateReviewerFeedbackPayload {
     feedback: string;
