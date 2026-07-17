@@ -43,8 +43,10 @@ export interface DynamicFieldStats {
 export interface DynamicField {
     value: any;
     question?: string;
-    source?: "FORM" | "EXTRACTION_AGENT";
+    source?: "FORM" | "EXTRACTION_AGENT" | "MANUAL";
     stats?: DynamicFieldStats;
+    editedBy?: string | null;
+    editedAt?: string;
 }
 interface Phone {
     countryCode: string;

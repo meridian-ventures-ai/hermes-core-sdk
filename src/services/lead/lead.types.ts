@@ -49,8 +49,11 @@ export interface DynamicFieldStats {
 export interface DynamicField {
   value: any;
   question?: string;
-  source?: "FORM" | "EXTRACTION_AGENT";
+  source?: "FORM" | "EXTRACTION_AGENT" | "MANUAL";
   stats?: DynamicFieldStats;
+  // Present on MANUAL entries: the advisor and time of the inline edit.
+  editedBy?: string | null;
+  editedAt?: string;
 }
 interface Phone {
     countryCode: string;
