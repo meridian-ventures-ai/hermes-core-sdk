@@ -68,7 +68,7 @@ export interface DecideAllResult {
   failed: { id: string; reason: string }[];
 }
 
-export interface PendingSuggestionSummary {
+export interface SuggestionInboxItem {
   entityType: string;
   entityId: string;
   entityName: string | null;

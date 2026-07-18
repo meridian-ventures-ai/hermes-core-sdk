@@ -4,7 +4,7 @@ import {
   CreateSuggestionsResult,
   DecideAllResult,
   DecideSuggestionRequest,
-  PendingSuggestionSummary,
+  SuggestionInboxItem,
   Suggestion,
 } from "./suggestion.types";
 
@@ -18,8 +18,8 @@ export class SuggestionService {
   }
 
   /** Entities that have pending suggestions — feeds the dashboard notification bell. */
-  async getPendingSummary(): Promise<PendingSuggestionSummary[]> {
-    const response = await this.httpClient.get("/api/v1/suggestions/pending-summary");
+  async getInbox(): Promise<SuggestionInboxItem[]> {
+    const response = await this.httpClient.get("/api/v1/suggestions/inbox");
     const data = response.data;
     return Array.isArray(data) ? data : [];
   }
