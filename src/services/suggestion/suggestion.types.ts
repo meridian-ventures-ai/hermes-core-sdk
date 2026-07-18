@@ -67,3 +67,11 @@ export interface DecideAllResult {
   done: number;
   failed: { id: string; reason: string }[];
 }
+
+export interface PendingSuggestionSummary {
+  entityType: string;
+  entityId: string;
+  entityName: string | null;
+  count: number;
+  latestAt: string;
+}

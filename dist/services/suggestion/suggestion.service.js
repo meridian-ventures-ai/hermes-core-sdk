@@ -10,6 +10,12 @@ class SuggestionService {
         const response = await this.httpClient.post("/api/v1/suggestions", data);
         return response.data;
     }
+    /** Entities that have pending suggestions — feeds the dashboard notification bell. */
+    async getPendingSummary() {
+        const response = await this.httpClient.get("/api/v1/suggestions/pending-summary");
+        const data = response.data;
+        return Array.isArray(data) ? data : [];
+    }
     async getPendingSuggestions(entityId) {
         const response = await this.httpClient.get(`/api/v1/suggestions/entity/${entityId}`);
         const data = response.data;

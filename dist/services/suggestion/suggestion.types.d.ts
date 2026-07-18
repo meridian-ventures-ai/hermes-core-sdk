@@ -59,3 +59,10 @@ export interface DecideAllResult {
         reason: string;
     }[];
 }
+export interface PendingSuggestionSummary {
+    entityType: string;
+    entityId: string;
+    entityName: string | null;
+    count: number;
+    latestAt: string;
+}
