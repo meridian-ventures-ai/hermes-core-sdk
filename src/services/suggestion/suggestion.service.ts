@@ -4,6 +4,7 @@ import {
   CreateSuggestionsResult,
   DecideAllResult,
   DecideSuggestionRequest,
+  PendingSuggestionSummary,
   Suggestion,
 } from "./suggestion.types";
 
@@ -14,6 +15,13 @@ export class SuggestionService {
   async createSuggestions(data: CreateSuggestionsRequest): Promise<CreateSuggestionsResult> {
     const response = await this.httpClient.post("/api/v1/suggestions", data);
     return response.data;
+  }
+
+  /** Entities that have pending suggestions — feeds the dashboard notification bell. */
+  async getPendingSummary(): Promise<PendingSuggestionSummary[]> {
+    const response = await this.httpClient.get("/api/v1/suggestions/pending-summary");
+    const data = response.data;
+    return Array.isArray(data) ? data : [];
   }
 
   async getPendingSuggestions(entityId: string): Promise<Suggestion[]> {
