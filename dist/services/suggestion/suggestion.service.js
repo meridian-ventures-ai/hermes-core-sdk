@@ -11,8 +11,8 @@ class SuggestionService {
         return response.data;
     }
     /** Entities that have pending suggestions — feeds the dashboard notification bell. */
-    async getPendingSummary() {
-        const response = await this.httpClient.get("/api/v1/suggestions/pending-summary");
+    async getInbox() {
+        const response = await this.httpClient.get("/api/v1/suggestions/inbox");
         const data = response.data;
         return Array.isArray(data) ? data : [];
     }
