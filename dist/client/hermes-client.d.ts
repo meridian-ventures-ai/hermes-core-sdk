@@ -10,7 +10,7 @@ import { EscalationService } from "../services/escalation/escalation.service";
 import { CallService } from "../services/calls/call.service";
 import { EventsService } from "../services/events/events.service";
 import { ScoringService } from "../services/scoring/scoring.service";
-import { SuggestionService } from "../services/suggestion/suggestion.service";
+import { ChangeRequestService } from "../services/change-request/change-request.service";
 export declare class HermesSDKError extends Error {
     statusCode?: number | undefined;
     code?: string | undefined;
@@ -32,7 +32,7 @@ export declare class HermesClient {
     escalations: EscalationService;
     calls: CallService;
     events: EventsService;
-    suggestions: SuggestionService;
+    changeRequests: ChangeRequestService;
     scoring: ScoringService;
     constructor(config: SDKConfig);
     /**
