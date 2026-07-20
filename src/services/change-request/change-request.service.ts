@@ -17,7 +17,7 @@ export class ChangeRequestService {
     return response.data;
   }
 
-  /** Entities that have pending suggestions — feeds the dashboard notification bell. */
+  /** Entities that have pending change requests — feeds the dashboard notification bell. */
   async getInbox(): Promise<ChangeRequestInboxItem[]> {
     const response = await this.httpClient.get("/api/v1/change-requests/inbox");
     const data = response.data;

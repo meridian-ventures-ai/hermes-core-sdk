@@ -5,7 +5,7 @@ export declare class ChangeRequestService {
     constructor(httpClient: AxiosInstance);
     /** Agent-side: submit a batch of proposed changes for a lead. */
     createChangeRequests(data: CreateChangeRequestsRequest): Promise<CreateChangeRequestsResult>;
-    /** Entities that have pending suggestions — feeds the dashboard notification bell. */
+    /** Entities that have pending change requests — feeds the dashboard notification bell. */
     getInbox(): Promise<ChangeRequestInboxItem[]>;
     getPendingChangeRequests(entityId: string): Promise<ChangeRequest[]>;
     acceptChangeRequest(id: string, body?: DecideChangeRequestRequest): Promise<ChangeRequest>;
