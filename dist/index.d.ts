@@ -8,7 +8,7 @@ export * from './services/calls/call.types';
 export * from './services/phoenix-analytics/phoenix-analytics.types';
 export * from './services/events/events.types';
 export * from './services/scoring/scoring.types';
-export * from './services/suggestion/suggestion.types';
+export * from './services/change-request/change-request.types';
 export * from './config/sdk-config';
 export * from './services/whatsapp-analytics/analytics.types';
 export * from './services/link-analytics/link-analytics.types';
