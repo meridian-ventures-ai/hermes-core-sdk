@@ -10,7 +10,7 @@ class ChangeRequestService {
         const response = await this.httpClient.post("/api/v1/change-requests", data);
         return response.data;
     }
-    /** Entities that have pending suggestions — feeds the dashboard notification bell. */
+    /** Entities that have pending change requests — feeds the dashboard notification bell. */
     async getInbox() {
         const response = await this.httpClient.get("/api/v1/change-requests/inbox");
         const data = response.data;

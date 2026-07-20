@@ -58,7 +58,7 @@ export interface CreateChangeRequestsResult {
 }
 
 export interface DecideChangeRequestRequest {
-  // Accept only: the advisor's edited value, when it differs from the suggestion.
+  // Accept only: the advisor's edited value, when it differs from the request.
   appliedValue?: unknown;
   note?: string;
 }
