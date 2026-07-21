@@ -13,6 +13,10 @@ class CallService {
         const response = await this.httpClient.get(`/api/v1/calls/logs/call-log/${callLogId}/transcripts`);
         return response.data;
     }
+    async updateCallLog(callLogId, data) {
+        const response = await this.httpClient.patch(`/api/v1/calls/logs/call-log/${callLogId}`, data);
+        return response.data;
+    }
     // Scheduled calls
     async createScheduledCall(data) {
         const response = await this.httpClient.post('/api/v1/calls/schedule', data);
