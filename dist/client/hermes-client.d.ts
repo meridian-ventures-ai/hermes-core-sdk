@@ -5,6 +5,7 @@ import { ChatService } from "../services/chat/chat.service";
 import { AnalyticsService } from "../services/analytics/analytics.service";
 import { PhoenixAnalyticsService } from "../services/phoenix-analytics/phoenix-analytics.service";
 import { WhatsAppAnalyticsService } from "../services/whatsapp-analytics/analytics.service";
+import { LinkAnalyticsService } from "../services/link-analytics/link-analytics.service";
 import { EscalationService } from "../services/escalation/escalation.service";
 import { CallService } from "../services/calls/call.service";
 import { EventsService } from "../services/events/events.service";
@@ -27,6 +28,7 @@ export declare class HermesClient {
     analytics: AnalyticsService;
     phoenixAnalytics: PhoenixAnalyticsService;
     whatsappAnalytics: WhatsAppAnalyticsService;
+    linkAnalytics: LinkAnalyticsService;
     escalations: EscalationService;
     calls: CallService;
     events: EventsService;

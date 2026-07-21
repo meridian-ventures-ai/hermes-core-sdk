@@ -13,6 +13,13 @@ export interface LeadMapResponse {
     callLogs: CallLog[];
 }
 
+/** A CRM lead-table column filter: `contains` for text, `in` for multi-select. */
+export interface LeadColumnFilter {
+    field: string;
+    op: "contains" | "in";
+    values: string[];
+}
+
 export interface GetLeadsParams {
     limit?: number;
     offset?: number;
@@ -25,6 +32,8 @@ export interface GetLeadsParams {
     courseType?: string;
     sortBy?: string;
     sortDirn?: "asc" | "desc";
+    /** Per-column filters, ANDed together. Serialized to JSON on the wire. */
+    filters?: LeadColumnFilter[];
 }
 
 /**
@@ -40,8 +49,11 @@ export interface DynamicFieldStats {
 export interface DynamicField {
   value: any;
   question?: string;
-  source?: "FORM" | "EXTRACTION_AGENT";
+  source?: "FORM" | "EXTRACTION_AGENT" | "MANUAL";
   stats?: DynamicFieldStats;
+  // Present on MANUAL entries: the advisor and time of the inline edit.
+  editedBy?: string | null;
+  editedAt?: string;
 }
 interface Phone {
     countryCode: string;
@@ -143,6 +155,11 @@ export interface UpdateLeadRequest {
     metadata?:            Record<string, any> | null;
     status?:              string | null;
     profileCompleteness?: number | null;
+    // Manual profile edits: editable contact columns plus a map of dynamic
+    // form-field edits keyed by fieldName.
+    email?:               string | null;
+    phone?:               Phone | null;
+    fields?:              Record<string, unknown>;
 }
 export interface UpdateReviewerFeedbackPayload {
     feedback: string;
