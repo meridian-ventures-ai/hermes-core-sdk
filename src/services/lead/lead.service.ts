@@ -19,7 +19,22 @@ export class LeadService {
     constructor(private httpClient: AxiosInstance) {}
 
     async getLeads(params?: GetLeadsParams): Promise<GetLeadsResponse> {
-        const response = await this.httpClient.get("/api/v1/leads", { params });
+        const { filters, sortDirn, ...rest } = params ?? {};
+        const query: Record<string, unknown> = { ...rest };
+        // The API takes column filters as a JSON-encoded array (see /api/v1/leads).
+        if (filters && filters.length > 0) query.filters = JSON.stringify(filters);
+        // API expects `sortDir`; the historical `sortDirn` name stays on the client.
+        if (sortDirn) query.sortDir = sortDirn;
+
+        const response = await this.httpClient.get("/api/v1/leads", { params: query });
+        return response.data;
+    }
+
+    /** Distinct values present for a column, for the CRM filter dropdowns. */
+    async getLeadFieldValues(field: string): Promise<string[]> {
+        const response = await this.httpClient.get("/api/v1/leads/field-values", {
+            params: { field },
+        });
         return response.data;
     }
 

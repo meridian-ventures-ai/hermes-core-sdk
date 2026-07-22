@@ -29,4 +29,5 @@ __exportStar(require("./services/scoring/scoring.types"), exports);
 // Summary types moved to chat.types.ts - kept for backward compatibility
 __exportStar(require("./config/sdk-config"), exports);
 __exportStar(require("./services/whatsapp-analytics/analytics.types"), exports);
+__exportStar(require("./services/agentic/agentic.types"), exports);
 __exportStar(require("./services/link-analytics/link-analytics.types"), exports);
