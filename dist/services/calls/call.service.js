@@ -26,5 +26,10 @@ class CallService {
         const response = await this.httpClient.patch(`/api/v1/calls/scheduled/${id}`, data);
         return response.data;
     }
+    // Lead-facing "Call me now" / "Schedule for later" choice from the chat widget.
+    async submitSchedulingPreference(data) {
+        const response = await this.httpClient.post('/api/v1/call-scheduling/preference', data);
+        return response.data;
+    }
 }
 exports.CallService = CallService;
