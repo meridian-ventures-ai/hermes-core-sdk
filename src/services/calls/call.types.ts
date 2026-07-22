@@ -90,3 +90,19 @@ export interface GetScheduledCallsParams {
     page?: number;
     limit?: number;
 }
+
+// Lead-facing scheduling preference (chat widget: "Call me now" / "Schedule for later")
+
+export type SchedulingPreference = 'call_now' | 'schedule_later';
+
+export interface SubmitSchedulingPreferenceRequest {
+    leadId: string;
+    preference: SchedulingPreference;
+    /** Required, and must be in the future, when preference is 'schedule_later'. */
+    selectedSlot?: string;
+}
+
+export interface SubmitSchedulingPreferenceResponse {
+    preference: SchedulingPreference;
+    scheduledCall: ScheduledCall | null;
+}

@@ -1,6 +1,6 @@
 import { AxiosInstance } from "axios";
 import { PaginatedResponse } from "../../shared/types";
-import { CallLog, CallTranscript, ScheduledCall, CreateScheduledCallRequest, UpdateScheduledCallRequest, GetScheduledCallsParams } from "./call.types";
+import { CallLog, CallTranscript, ScheduledCall, CreateScheduledCallRequest, UpdateScheduledCallRequest, GetScheduledCallsParams, SubmitSchedulingPreferenceRequest, SubmitSchedulingPreferenceResponse } from "./call.types";
 export declare class CallService {
     private httpClient;
     constructor(httpClient: AxiosInstance);
@@ -9,4 +9,5 @@ export declare class CallService {
     createScheduledCall(data: CreateScheduledCallRequest): Promise<ScheduledCall>;
     getScheduledCalls(params?: GetScheduledCallsParams): Promise<PaginatedResponse<ScheduledCall>>;
     updateScheduledCall(id: string, data: UpdateScheduledCallRequest): Promise<ScheduledCall>;
+    submitSchedulingPreference(data: SubmitSchedulingPreferenceRequest): Promise<SubmitSchedulingPreferenceResponse>;
 }

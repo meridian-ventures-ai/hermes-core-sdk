@@ -7,6 +7,8 @@ import {
     CreateScheduledCallRequest,
     UpdateScheduledCallRequest,
     GetScheduledCallsParams,
+    SubmitSchedulingPreferenceRequest,
+    SubmitSchedulingPreferenceResponse,
 } from "./call.types";
 
 export class CallService {
@@ -36,6 +38,15 @@ export class CallService {
 
     async updateScheduledCall(id: string, data: UpdateScheduledCallRequest): Promise<ScheduledCall> {
         const response = await this.httpClient.patch(`/api/v1/calls/scheduled/${id}`, data);
+        return response.data;
+    }
+
+    // Lead-facing "Call me now" / "Schedule for later" choice from the chat widget.
+
+    async submitSchedulingPreference(
+        data: SubmitSchedulingPreferenceRequest
+    ): Promise<SubmitSchedulingPreferenceResponse> {
+        const response = await this.httpClient.post('/api/v1/call-scheduling/preference', data);
         return response.data;
     }
 }
