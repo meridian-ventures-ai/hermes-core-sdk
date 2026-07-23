@@ -5,14 +5,14 @@ class ChangeRequestService {
     constructor(httpClient) {
         this.httpClient = httpClient;
     }
-    /** Agent-side: submit a batch of proposed changes for a lead. */
+    // Agent side: submit a batch of proposed changes for one lead.
     async createChangeRequests(data) {
-        const response = await this.httpClient.post("/api/v1/change-requests", data);
+        const response = await this.httpClient.post('/api/v1/change-requests', data);
         return response.data;
     }
-    /** Entities that have pending change requests — feeds the dashboard notification bell. */
+    // Leads with pending change requests. Feeds the dashboard notification bell.
     async getInbox() {
-        const response = await this.httpClient.get("/api/v1/change-requests/inbox");
+        const response = await this.httpClient.get('/api/v1/change-requests/inbox');
         const data = response.data;
         return Array.isArray(data) ? data : [];
     }

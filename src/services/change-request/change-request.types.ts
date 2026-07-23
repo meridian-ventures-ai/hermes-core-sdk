@@ -1,11 +1,11 @@
-export type ChangeRequestAction = "set_field" | "set_status";
+export type ChangeRequestAction = 'set_field' | 'set_status';
 
-export type ChangeRequestStatus = "pending" | "accepted" | "dismissed" | "superseded";
+export type ChangeRequestStatus = 'pending' | 'accepted' | 'dismissed' | 'superseded';
 
 export interface ChangeRequestPayload {
   currentValue: unknown;
   suggestedValue: unknown;
-  // Set on accept; differs from suggestedValue when the advisor edited it.
+  // Set on accept. Differs from suggestedValue when the advisor edited it.
   appliedValue?: unknown;
 }
 
