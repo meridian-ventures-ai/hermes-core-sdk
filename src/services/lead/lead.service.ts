@@ -53,6 +53,13 @@ export class LeadService {
         return response.data;
     }
 
+    // Platform-wide pipeline stages, the single source of truth for valid statuses.
+    async getLeadStatuses(): Promise<string[]> {
+        const response = await this.httpClient.get('/api/v1/leads/statuses');
+        const data = response.data;
+        return Array.isArray(data) ? data : [];
+    }
+
     /**
      * Returns all lead fields with flowType === "QUALIFYING_QUESTION" for the
      * authenticated tenant. These are stored in the same lead_fields table as
