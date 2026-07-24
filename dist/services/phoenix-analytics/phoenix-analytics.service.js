@@ -14,6 +14,9 @@ const EMPTY_METRICS = {
     approvedCandidates: 0,
     rejectedCandidates: 0,
     npsScore: 0,
+    uniqueLeadsCalled: null,
+    truePickupRate: null,
+    meaningfulCallRate: null,
 };
 const EMPTY_CALL_EFFECTIVENESS = {
     uniqueLeadsCalled: 0,
@@ -44,11 +47,6 @@ class PhoenixAnalyticsService {
         const url = `/api/v1/analytics/phoenix/call-effectiveness?from=${fromDate}&to=${toDate}`;
         const response = await this.httpClient.get(url);
         return response.data ?? EMPTY_CALL_EFFECTIVENESS;
-    }
-    async getCallEffectivenessBreakdown(fromDate, toDate) {
-        const url = `/api/v1/analytics/phoenix/call-effectiveness/breakdown?from=${fromDate}&to=${toDate}`;
-        const response = await this.httpClient.get(url);
-        return response.data ?? [];
     }
     async calculateMetrics(date) {
         const url = date
