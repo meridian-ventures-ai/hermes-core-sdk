@@ -7,7 +7,6 @@ exports.AGENT_DENIED_LEAD_FIELDS = [
     'last_name',
     'email',
     'phone',
-    'birthday',
 ];
 // Minimum confidence for an agent-filed change request.
 exports.CHANGE_REQUEST_CONFIDENCE_THRESHOLD = 0.7;
