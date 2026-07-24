@@ -66,6 +66,7 @@ export interface DecideChangeRequestRequest {
 export interface DecideAllResult {
   done: number;
   failed: { id: string; reason: string }[];
+  // Fields left undecided because they had competing values for a human to pick.
   contested: number;
 }
 
