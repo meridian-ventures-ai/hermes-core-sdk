@@ -12,5 +12,6 @@ export * from './services/change-request/change-request.types';
 // Summary types moved to chat.types.ts - kept for backward compatibility
 export * from './config/sdk-config';
 export * from './services/whatsapp-analytics/analytics.types';
+export * from './services/agentic/agentic.types';
 export * from './services/link-analytics/link-analytics.types';
 export * from './shared/lead-constants';

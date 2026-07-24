@@ -12,6 +12,7 @@ import { CallService } from "../services/calls/call.service";
 import { EventsService } from "../services/events/events.service";
 import { ScoringService } from "../services/scoring/scoring.service";
 import { ChangeRequestService } from "../services/change-request/change-request.service";
+import { AgenticService } from "../services/agentic/agentic.service";
 
 export class HermesSDKError extends Error {
     constructor(
@@ -42,6 +43,7 @@ export class HermesClient {
     public events: EventsService;
     public changeRequests: ChangeRequestService;
     public scoring: ScoringService;
+    public agentic: AgenticService;
 
     constructor(config: SDKConfig) {
         this.config = config;
@@ -74,6 +76,7 @@ export class HermesClient {
         this.events = new EventsService(this.httpClient);
         this.changeRequests = new ChangeRequestService(this.httpClient);
         this.scoring = new ScoringService(this.httpClient);
+        this.agentic = new AgenticService(config);
     }
 
     /**
