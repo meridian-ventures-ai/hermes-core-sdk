@@ -66,6 +66,7 @@ export interface DecideChangeRequestRequest {
 export interface DecideAllResult {
   done: number;
   failed: { id: string; reason: string }[];
+  contested: number;
 }
 
 export interface ChangeRequestInboxItem {

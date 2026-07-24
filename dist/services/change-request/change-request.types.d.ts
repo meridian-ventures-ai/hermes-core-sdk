@@ -58,6 +58,7 @@ export interface DecideAllResult {
         id: string;
         reason: string;
     }[];
+    contested: number;
 }
 export interface ChangeRequestInboxItem {
     entityType: string;
