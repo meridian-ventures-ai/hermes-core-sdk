@@ -4,7 +4,6 @@ export const AGENT_DENIED_LEAD_FIELDS = [
   'last_name',
   'email',
   'phone',
-  'birthday',
 ] as const;
 
 // Minimum confidence for an agent-filed change request.
