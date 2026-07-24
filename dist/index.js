@@ -32,4 +32,3 @@ __exportStar(require("./config/sdk-config"), exports);
 __exportStar(require("./services/whatsapp-analytics/analytics.types"), exports);
 __exportStar(require("./services/agentic/agentic.types"), exports);
 __exportStar(require("./services/link-analytics/link-analytics.types"), exports);
-__exportStar(require("./shared/lead-constants"), exports);
