@@ -12,17 +12,16 @@ export interface PhoenixAnalyticsMetrics {
   approvedCandidates: number | null;
   rejectedCandidates: number | null;
   npsScore: number;
-}
-
-// Period totals for the outreach cards — unique leads and pick-up are distinct per
-// lead over the range, so they come from a dedicated endpoint, not summed daily rows.
-export interface PhoenixCallEffectiveness {
-  uniqueLeadsCalled: number;
+  // SAE outreach metrics, per day, alongside the metrics above.
+  uniqueLeadsCalled: number | null;
   truePickupRate: number | null;
   meaningfulCallRate: number | null;
 }
 
-// One trend point: the same three metrics for a single day.
-export interface PhoenixCallEffectivenessDay extends PhoenixCallEffectiveness {
-  date: string;
+// Period totals for the outreach cards. Unique leads and pick-up are distinct per lead
+// over the range, so they come from a dedicated endpoint, not summed daily rows.
+export interface PhoenixCallEffectiveness {
+  uniqueLeadsCalled: number;
+  truePickupRate: number | null;
+  meaningfulCallRate: number | null;
 }
