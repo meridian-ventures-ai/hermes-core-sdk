@@ -9,6 +9,7 @@ export declare class LeadService {
     getLead(leadId: string): Promise<Lead>;
     getLeadJourney(leadId: string): Promise<LeadMapResponse>;
     getLeadFields(): Promise<LeadField[]>;
+    getLeadStatuses(): Promise<string[]>;
     /**
      * Returns all lead fields with flowType === "QUALIFYING_QUESTION" for the
      * authenticated tenant. These are stored in the same lead_fields table as
