@@ -24,6 +24,11 @@ class LeadService {
         });
         return response.data;
     }
+    /** Distinct lead sources (created_from) with counts, for the source filter. */
+    async getLeadSources() {
+        const response = await this.httpClient.get("/api/v1/leads/sources");
+        return response.data;
+    }
     async getLead(leadId) {
         const response = await this.httpClient.get(`/api/v1/leads/${leadId}`);
         return response.data;
