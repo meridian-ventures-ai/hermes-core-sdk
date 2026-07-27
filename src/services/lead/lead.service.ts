@@ -9,6 +9,7 @@ import {
     Lead,
     LeadField,
     LeadMapResponse,
+    LeadSource,
     QualifyingField,
     UpdateLeadFieldRequest,
     UpdateLeadRequest,
@@ -35,6 +36,12 @@ export class LeadService {
         const response = await this.httpClient.get("/api/v1/leads/field-values", {
             params: { field },
         });
+        return response.data;
+    }
+
+    /** Distinct lead sources (created_from) with counts, for the source filter. */
+    async getLeadSources(): Promise<LeadSource[]> {
+        const response = await this.httpClient.get("/api/v1/leads/sources");
         return response.data;
     }
 
