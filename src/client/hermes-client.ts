@@ -7,6 +7,7 @@ import { AnalyticsService } from "../services/analytics/analytics.service";
 import { PhoenixAnalyticsService } from "../services/phoenix-analytics/phoenix-analytics.service";
 import { WhatsAppAnalyticsService } from "../services/whatsapp-analytics/analytics.service";
 import { LinkAnalyticsService } from "../services/link-analytics/link-analytics.service";
+import { ChatLinkAnalyticsService } from "../services/chat-link-analytics/chat-link-analytics.service";
 import { EscalationService } from "../services/escalation/escalation.service";
 import { CallService } from "../services/calls/call.service";
 import { EventsService } from "../services/events/events.service";
@@ -38,6 +39,7 @@ export class HermesClient {
     public phoenixAnalytics: PhoenixAnalyticsService;
     public whatsappAnalytics: WhatsAppAnalyticsService;
     public linkAnalytics: LinkAnalyticsService;
+    public chatLinkAnalytics: ChatLinkAnalyticsService;
     public escalations: EscalationService;
     public calls: CallService;
     public events: EventsService;
@@ -71,6 +73,7 @@ export class HermesClient {
         this.phoenixAnalytics = new PhoenixAnalyticsService(this.httpClient);
         this.whatsappAnalytics = new WhatsAppAnalyticsService(this.httpClient);
         this.linkAnalytics = new LinkAnalyticsService(this.httpClient);
+        this.chatLinkAnalytics = new ChatLinkAnalyticsService(this.httpClient);
         this.escalations = new EscalationService(this.httpClient);
         this.calls = new CallService(this.httpClient);
         this.events = new EventsService(this.httpClient);
