@@ -24,6 +24,11 @@ class LeadService {
         });
         return response.data;
     }
+    /** Distinct lead sources (created_from) with counts, for the source filter. */
+    async getLeadSources() {
+        const response = await this.httpClient.get("/api/v1/leads/sources");
+        return response.data;
+    }
     async getLead(leadId) {
         const response = await this.httpClient.get(`/api/v1/leads/${leadId}`);
         return response.data;
@@ -35,6 +40,12 @@ class LeadService {
     async getLeadFields() {
         const response = await this.httpClient.get('/api/v1/leads/fields');
         return response.data;
+    }
+    // Platform-wide pipeline stages, the single source of truth for valid statuses.
+    async getLeadStatuses() {
+        const response = await this.httpClient.get('/api/v1/leads/statuses');
+        const data = response.data;
+        return Array.isArray(data) ? data : [];
     }
     /**
      * Returns all lead fields with flowType === "QUALIFYING_QUESTION" for the

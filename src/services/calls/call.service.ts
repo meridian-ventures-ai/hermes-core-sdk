@@ -6,6 +6,7 @@ import {
     ScheduledCall,
     CreateScheduledCallRequest,
     UpdateScheduledCallRequest,
+    UpdateCallLogRequest,
     GetScheduledCallsParams,
     SubmitSchedulingPreferenceRequest,
     SubmitSchedulingPreferenceResponse,
@@ -21,6 +22,11 @@ export class CallService {
 
     async getTranscriptsByCallLogId(callLogId: string): Promise<CallTranscript[]> {
         const response = await this.httpClient.get(`/api/v1/calls/logs/call-log/${callLogId}/transcripts`);
+        return response.data;
+    }
+
+    async updateCallLog(callLogId: string, data: UpdateCallLogRequest): Promise<CallLog> {
+        const response = await this.httpClient.patch(`/api/v1/calls/logs/call-log/${callLogId}`, data);
         return response.data;
     }
 

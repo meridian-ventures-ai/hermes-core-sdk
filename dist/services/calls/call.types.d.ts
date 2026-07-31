@@ -25,10 +25,24 @@ export interface CallLog {
     endedAt: string | null;
     durationSeconds: number | null;
     preCallContext: PreCallContext | null;
+    metadata: any | null;
     summary: string | null;
     scheduledByUserId: number | null;
     createdAt: string;
     updatedAt: string;
+}
+export type CallLogStatus = 'QUEUED' | 'INITIATED' | 'RINGING' | 'ANSWERED' | 'IN_PROGRESS' | 'COMPLETED' | 'FAILED' | 'BUSY' | 'NO_ANSWER';
+export interface UpdateCallLogRequest {
+    status?: CallLogStatus;
+    twilioCallSid?: string | null;
+    errorMessage?: string | null;
+    errorCode?: string | null;
+    answeredAt?: string | null;
+    endedAt?: string | null;
+    durationSeconds?: number | null;
+    summary?: string | null;
+    callRecordingS3Path?: string | null;
+    metadata?: any | null;
 }
 export interface CallTranscript {
     id: string;

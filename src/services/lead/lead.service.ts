@@ -9,6 +9,7 @@ import {
     Lead,
     LeadField,
     LeadMapResponse,
+    LeadSource,
     QualifyingField,
     UpdateLeadFieldRequest,
     UpdateLeadRequest,
@@ -38,6 +39,12 @@ export class LeadService {
         return response.data;
     }
 
+    /** Distinct lead sources (created_from) with counts, for the source filter. */
+    async getLeadSources(): Promise<LeadSource[]> {
+        const response = await this.httpClient.get("/api/v1/leads/sources");
+        return response.data;
+    }
+
     async getLead(leadId: string): Promise<Lead> {
         const response = await this.httpClient.get(`/api/v1/leads/${leadId}`);
         return response.data;
@@ -51,6 +58,13 @@ export class LeadService {
     async getLeadFields(): Promise<LeadField[]> {
         const response = await this.httpClient.get('/api/v1/leads/fields');
         return response.data;
+    }
+
+    // Platform-wide pipeline stages, the single source of truth for valid statuses.
+    async getLeadStatuses(): Promise<string[]> {
+        const response = await this.httpClient.get('/api/v1/leads/statuses');
+        const data = response.data;
+        return Array.isArray(data) ? data : [];
     }
 
     /**

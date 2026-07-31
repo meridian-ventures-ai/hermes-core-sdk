@@ -11,6 +11,7 @@ import { EscalationService } from "../services/escalation/escalation.service";
 import { CallService } from "../services/calls/call.service";
 import { EventsService } from "../services/events/events.service";
 import { ScoringService } from "../services/scoring/scoring.service";
+import { ChangeRequestService } from "../services/change-request/change-request.service";
 import { AgenticService } from "../services/agentic/agentic.service";
 
 export class HermesSDKError extends Error {
@@ -40,6 +41,7 @@ export class HermesClient {
     public escalations: EscalationService;
     public calls: CallService;
     public events: EventsService;
+    public changeRequests: ChangeRequestService;
     public scoring: ScoringService;
     public agentic: AgenticService;
 
@@ -72,6 +74,7 @@ export class HermesClient {
         this.escalations = new EscalationService(this.httpClient);
         this.calls = new CallService(this.httpClient);
         this.events = new EventsService(this.httpClient);
+        this.changeRequests = new ChangeRequestService(this.httpClient);
         this.scoring = new ScoringService(this.httpClient);
         this.agentic = new AgenticService(config);
     }
