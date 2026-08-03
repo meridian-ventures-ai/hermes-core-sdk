@@ -93,10 +93,16 @@ class LeadService {
         const response = await this.httpClient.patch(`/api/v1/leads/${leadId}`, payload);
         return response.data;
     }
-    /** Merges into `lead.metadata.reviewer_feedback` without touching other metadata keys. Pass empty/whitespace to clear. */
-    async updateReviewerFeedback(leadId, payload) {
-        const response = await this.httpClient.patch(`/api/v1/leads/${leadId}/reviewer-feedback`, payload);
+    /** Merges into the lead's stored internal notes without touching other metadata keys. Pass empty/whitespace to clear. */
+    async updateInternalNotes(leadId, payload) {
+        const response = await this.httpClient.patch(`/api/v1/leads/${leadId}/internal-notes`, payload);
         return response.data;
+    }
+    /** @deprecated Use updateInternalNotes. */
+    async updateReviewerFeedback(leadId, payload) {
+        return this.updateInternalNotes(leadId, {
+            internalNotes: payload.feedback,
+        });
     }
 }
 exports.LeadService = LeadService;

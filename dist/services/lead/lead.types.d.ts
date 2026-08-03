@@ -152,6 +152,10 @@ export interface UpdateLeadRequest {
     phone?: Phone | null;
     fields?: Record<string, unknown>;
 }
+export interface UpdateInternalNotesPayload {
+    internalNotes: string;
+}
+/** @deprecated Use UpdateInternalNotesPayload. */
 export interface UpdateReviewerFeedbackPayload {
     feedback: string;
 }

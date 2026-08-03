@@ -13,6 +13,7 @@ import {
     QualifyingField,
     UpdateLeadFieldRequest,
     UpdateLeadRequest,
+    UpdateInternalNotesPayload,
     UpdateReviewerFeedbackPayload,
 } from "./lead.types";
 
@@ -132,15 +133,25 @@ export class LeadService {
         return response.data;
     }
 
-    /** Merges into `lead.metadata.reviewer_feedback` without touching other metadata keys. Pass empty/whitespace to clear. */
+    /** Merges into the lead's stored internal notes without touching other metadata keys. Pass empty/whitespace to clear. */
+    async updateInternalNotes(
+        leadId: string,
+        payload: UpdateInternalNotesPayload,
+    ): Promise<Lead> {
+        const response = await this.httpClient.patch(
+            `/api/v1/leads/${leadId}/internal-notes`,
+            payload,
+        );
+        return response.data;
+    }
+
+    /** @deprecated Use updateInternalNotes. */
     async updateReviewerFeedback(
         leadId: string,
         payload: UpdateReviewerFeedbackPayload,
     ): Promise<Lead> {
-        const response = await this.httpClient.patch(
-            `/api/v1/leads/${leadId}/reviewer-feedback`,
-            payload,
-        );
-        return response.data;
+        return this.updateInternalNotes(leadId, {
+            internalNotes: payload.feedback,
+        });
     }
 }
