@@ -18,6 +18,7 @@ const call_service_1 = require("../services/calls/call.service");
 const events_service_1 = require("../services/events/events.service");
 const scoring_service_1 = require("../services/scoring/scoring.service");
 const change_request_service_1 = require("../services/change-request/change-request.service");
+const agentic_service_1 = require("../services/agentic/agentic.service");
 class HermesSDKError extends Error {
     constructor(message, statusCode, code, details) {
         super(message);
@@ -59,6 +60,7 @@ class HermesClient {
         this.events = new events_service_1.EventsService(this.httpClient);
         this.changeRequests = new change_request_service_1.ChangeRequestService(this.httpClient);
         this.scoring = new scoring_service_1.ScoringService(this.httpClient);
+        this.agentic = new agentic_service_1.AgenticService(config);
     }
     /**
      * Set the access token (JWT) for authentication.

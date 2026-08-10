@@ -12,6 +12,7 @@ import { CallService } from "../services/calls/call.service";
 import { EventsService } from "../services/events/events.service";
 import { ScoringService } from "../services/scoring/scoring.service";
 import { ChangeRequestService } from "../services/change-request/change-request.service";
+import { AgenticService } from "../services/agentic/agentic.service";
 export declare class HermesSDKError extends Error {
     statusCode?: number | undefined;
     code?: string | undefined;
@@ -36,6 +37,7 @@ export declare class HermesClient {
     events: EventsService;
     changeRequests: ChangeRequestService;
     scoring: ScoringService;
+    agentic: AgenticService;
     constructor(config: SDKConfig);
     /**
      * Set the access token (JWT) for authentication.

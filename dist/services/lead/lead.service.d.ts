@@ -1,11 +1,13 @@
 import { AxiosInstance } from "axios";
-import { AssignLeadPayload, CreateLeadFieldRequest, CreateLeadRequest, DynamicField, GetLeadsParams, GetLeadsResponse, Lead, LeadField, LeadMapResponse, QualifyingField, UpdateLeadFieldRequest, UpdateLeadRequest, UpdateReviewerFeedbackPayload } from "./lead.types";
+import { AssignLeadPayload, CreateLeadFieldRequest, CreateLeadRequest, DynamicField, GetLeadsParams, GetLeadsResponse, Lead, LeadField, LeadMapResponse, LeadSource, QualifyingField, UpdateLeadFieldRequest, UpdateLeadRequest, UpdateReviewerFeedbackPayload } from "./lead.types";
 export declare class LeadService {
     private httpClient;
     constructor(httpClient: AxiosInstance);
     getLeads(params?: GetLeadsParams): Promise<GetLeadsResponse>;
     /** Distinct values present for a column, for the CRM filter dropdowns. */
     getLeadFieldValues(field: string): Promise<string[]>;
+    /** Distinct lead sources (created_from) with counts, for the source filter. */
+    getLeadSources(): Promise<LeadSource[]>;
     getLead(leadId: string): Promise<Lead>;
     getLeadJourney(leadId: string): Promise<LeadMapResponse>;
     getLeadFields(): Promise<LeadField[]>;
