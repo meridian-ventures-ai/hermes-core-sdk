@@ -32,8 +32,18 @@ export interface GetLeadsParams {
     courseType?: string;
     sortBy?: string;
     sortDirn?: "asc" | "desc";
+    /** Comma-separated created_from values to hide, e.g. import batches. */
+    hideSources?: string;
+    /** Comma-separated created_from values to show exclusively (imported-only view). */
+    sources?: string;
     /** Per-column filters, ANDed together. Serialized to JSON on the wire. */
     filters?: LeadColumnFilter[];
+}
+
+/** One created_from value and how many live leads carry it. */
+export interface LeadSource {
+    source: string;
+    count: number;
 }
 
 /**
