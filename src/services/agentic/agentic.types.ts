@@ -20,16 +20,25 @@ export interface UIMessage {
   createdAt?: string;
 }
 
+/** One place a user can book, with its own Calendly event and token */
 export interface BookingLocation {
+  /** Short id used by the agent, e.g. "jeddah" */
   key: string;
+  /** Human readable name of the place */
   label: string;
+  /** Branch names that map to this location, empty means it serves all */
   branches: string[];
+  /** Calendly event type API uri to read slots from and book against */
   eventTypeUri: string;
+  /** Public Calendly page link, shared when live booking is unavailable */
   schedulingUrl: string;
+  /** IANA timezone used to show slot times, e.g. "Asia/Riyadh" */
   timezone: string;
+  /** Calendly access token for this location, resolve it server side only */
   token: string;
 }
 
+/** Booking setup a tenant app sends with each chat request to enable in chat booking */
 export interface BookingConfig {
   provider: 'calendly';
   locations: BookingLocation[];
