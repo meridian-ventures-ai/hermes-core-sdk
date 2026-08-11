@@ -57,12 +57,23 @@ export interface UpdateCallLogRequest {
     metadata?: any | null;
 }
 
+// Where a turn sits in the call recording. Written after the call by phoenix,
+// so it is absent until the recording has been transcribed, and absent for
+// good on turns it could not place confidently.
+export interface CallTranscriptAudioOffsets {
+    audioStartMs?: number;
+    audioEndMs?: number;
+    audioAlignConfidence?: number;
+}
+
 export interface CallTranscript {
     id: string;
     callLogId: string;
     turnIndex: number;
     role: string;
     content: string;
+    responseMetadata?: (Record<string, unknown> & CallTranscriptAudioOffsets) | null;
+    responseLatencyMs?: number | null;
     timestamp: string;
     createdAt: string;
 }

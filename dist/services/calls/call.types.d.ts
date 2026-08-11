@@ -44,12 +44,19 @@ export interface UpdateCallLogRequest {
     callRecordingS3Path?: string | null;
     metadata?: any | null;
 }
+export interface CallTranscriptAudioOffsets {
+    audioStartMs?: number;
+    audioEndMs?: number;
+    audioAlignConfidence?: number;
+}
 export interface CallTranscript {
     id: string;
     callLogId: string;
     turnIndex: number;
     role: string;
     content: string;
+    responseMetadata?: (Record<string, unknown> & CallTranscriptAudioOffsets) | null;
+    responseLatencyMs?: number | null;
     timestamp: string;
     createdAt: string;
 }
