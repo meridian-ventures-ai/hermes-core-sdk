@@ -20,25 +20,16 @@ export interface UIMessage {
   createdAt?: string;
 }
 
-/** One bookable calendar. Tenants split them however they like, per branch, team or program */
 export interface BookingCalendar {
-  /** Short id used by the agent, e.g. "jeddah" */
   key: string;
-  /** Human readable name of the calendar */
   label: string;
-  /** Names users say that map to this calendar, e.g. branch names. Empty means it serves all */
-  aliases: string[];
-  /** Calendly event type API uri to read slots from and book against */
-  eventTypeUri: string;
-  /** Public Calendly page link, shared when live booking is unavailable */
-  schedulingUrl: string;
-  /** IANA timezone used to show slot times, e.g. "Asia/Riyadh" */
+  aliases: string[]; // other names for this calendar, like its branch names
+  eventApiUrl: string; // calendly api url of the event we read slots from and book
+  schedulingUrl: string; // public calendly page link, shared when live booking is unavailable
   timezone: string;
-  /** Calendly access token for this calendar, resolve it server side only */
   token: string;
 }
 
-/** Booking setup a tenant app sends with each chat request to enable in chat booking */
 export interface BookingConfig {
   provider: 'calendly';
   calendars: BookingCalendar[];
@@ -53,6 +44,5 @@ export interface AgenticChatRequest {
   profileData?: Record<string, unknown> | null;
   /** Sentinel prompt key to fetch. Defaults to "system_prompt" if omitted. */
   promptKey?: string;
-  /** Tenant booking setup — resolved server-side by the tenant app, never from the browser */
   booking?: BookingConfig;
 }
