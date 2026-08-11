@@ -17,6 +17,19 @@ export interface UIMessage {
     content?: string;
     createdAt?: string;
 }
+export interface BookingLocation {
+    key: string;
+    label: string;
+    branches: string[];
+    eventTypeUri: string;
+    schedulingUrl: string;
+    timezone: string;
+    token: string;
+}
+export interface BookingConfig {
+    provider: 'calendly';
+    locations: BookingLocation[];
+}
 export interface AgenticChatRequest {
     /** Chat session UUID — must exist (or will be auto-created) in hermes-core */
     id: string;
@@ -26,4 +39,6 @@ export interface AgenticChatRequest {
     profileData?: Record<string, unknown> | null;
     /** Sentinel prompt key to fetch. Defaults to "system_prompt" if omitted. */
     promptKey?: string;
+    /** Tenant booking setup — resolved server-side by the tenant app, never from the browser */
+    booking?: BookingConfig;
 }
