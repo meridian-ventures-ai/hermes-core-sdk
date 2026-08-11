@@ -17,27 +17,27 @@ export interface UIMessage {
     content?: string;
     createdAt?: string;
 }
-/** One place a user can book, with its own Calendly event and token */
-export interface BookingLocation {
+/** One bookable calendar. Tenants split them however they like, per branch, team or program */
+export interface BookingCalendar {
     /** Short id used by the agent, e.g. "jeddah" */
     key: string;
-    /** Human readable name of the place */
+    /** Human readable name of the calendar */
     label: string;
-    /** Branch names that map to this location, empty means it serves all */
-    branches: string[];
+    /** Names users say that map to this calendar, e.g. branch names. Empty means it serves all */
+    aliases: string[];
     /** Calendly event type API uri to read slots from and book against */
     eventTypeUri: string;
     /** Public Calendly page link, shared when live booking is unavailable */
     schedulingUrl: string;
     /** IANA timezone used to show slot times, e.g. "Asia/Riyadh" */
     timezone: string;
-    /** Calendly access token for this location, resolve it server side only */
+    /** Calendly access token for this calendar, resolve it server side only */
     token: string;
 }
 /** Booking setup a tenant app sends with each chat request to enable in chat booking */
 export interface BookingConfig {
     provider: 'calendly';
-    locations: BookingLocation[];
+    calendars: BookingCalendar[];
 }
 export interface AgenticChatRequest {
     /** Chat session UUID — must exist (or will be auto-created) in hermes-core */
