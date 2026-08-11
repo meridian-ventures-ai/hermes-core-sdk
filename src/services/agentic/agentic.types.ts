@@ -20,6 +20,21 @@ export interface UIMessage {
   createdAt?: string;
 }
 
+export interface BookingCalendar {
+  key: string;
+  label: string;
+  aliases: string[]; // other names for this calendar, like its branch names
+  eventApiUrl: string; // calendly api url of the event we read slots from and book
+  schedulingUrl: string; // public calendly page link, shared when live booking is unavailable
+  timezone: string;
+  token: string;
+}
+
+export interface BookingConfig {
+  provider: 'calendly';
+  calendars: BookingCalendar[];
+}
+
 export interface AgenticChatRequest {
   /** Chat session UUID — must exist (or will be auto-created) in hermes-core */
   id: string;
@@ -29,4 +44,5 @@ export interface AgenticChatRequest {
   profileData?: Record<string, unknown> | null;
   /** Sentinel prompt key to fetch. Defaults to "system_prompt" if omitted. */
   promptKey?: string;
+  booking?: BookingConfig;
 }
