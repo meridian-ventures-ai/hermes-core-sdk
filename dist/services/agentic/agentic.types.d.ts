@@ -39,5 +39,5 @@ export interface AgenticChatRequest {
     profileData?: Record<string, unknown> | null;
     /** Sentinel prompt key to fetch. Defaults to "system_prompt" if omitted. */
     promptKey?: string;
-    booking?: BookingConfig;
+    bookMeetingViaCalendly?: BookingConfig;
 }
