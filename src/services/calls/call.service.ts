@@ -16,7 +16,7 @@ export class CallService {
     constructor(private httpClient: AxiosInstance) {}
 
     async getCallLogsByLeadId(leadId: string): Promise<CallLog[]> {
-        const response = await this.httpClient.get(`/api/v1/calls/leads/${leadId}`);
+        const response = await this.httpClient.get(`/api/v1/calls/lead/${leadId}`);
         return response.data;
     }
 
