@@ -6,7 +6,7 @@ class CallService {
         this.httpClient = httpClient;
     }
     async getCallLogsByLeadId(leadId) {
-        const response = await this.httpClient.get(`/api/v1/calls/leads/${leadId}/call-logs`);
+        const response = await this.httpClient.get(`/api/v1/calls/leads/${leadId}`);
         return response.data;
     }
     async getTranscriptsByCallLogId(callLogId) {
