@@ -114,10 +114,7 @@ export interface GetScheduledCallsParams {
     to?: string;
     page?: number;
     limit?: number;
-    /**
-     * Order of `scheduledAt`. Omitted means desc, the order this list has
-     * always returned, so existing callers are unaffected.
-     */
+    /** Sort order for scheduledAt. Defaults to desc when not passed. */
     sortDirn?: 'asc' | 'desc';
 }
 
