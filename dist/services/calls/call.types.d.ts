@@ -94,6 +94,8 @@ export interface GetScheduledCallsParams {
     to?: string;
     page?: number;
     limit?: number;
+    /** Sort order for scheduledAt. Defaults to desc when not passed. */
+    sortDirn?: 'asc' | 'desc';
 }
 export type SchedulingPreference = 'call_now' | 'schedule_later';
 export interface SubmitSchedulingPreferenceRequest {
