@@ -114,6 +114,11 @@ export interface GetScheduledCallsParams {
     to?: string;
     page?: number;
     limit?: number;
+    /**
+     * Order of `scheduledAt`. Omitted means desc, the order this list has
+     * always returned, so existing callers are unaffected.
+     */
+    sortDirn?: 'asc' | 'desc';
 }
 
 // Lead-facing scheduling preference (chat widget: "Call me now" / "Schedule for later")
