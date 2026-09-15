@@ -75,6 +75,7 @@ interface Phone {
 export interface UpcomingCall {
     willCall: boolean;
     delayMinutes?: number;
+    fromNumber?: string;
 }
 
 export interface Lead {
