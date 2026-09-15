@@ -70,6 +70,13 @@ interface Phone {
     phoneNumber: string;
 }
 
+// Sent back with a new lead. Says whether the auto call scheduler is going to
+// ring this lead, so the channel can tell the person a call is coming.
+export interface UpcomingCall {
+    willCall: boolean;
+    delayMinutes?: number;
+}
+
 export interface Lead {
     id: string;
     tenantId: string;
@@ -89,6 +96,7 @@ export interface Lead {
     assignedAt: string | null;
     createdAt: string;
     updatedAt: string;
+    autoCall?: UpcomingCall;
 }
 
 export interface LeadField {

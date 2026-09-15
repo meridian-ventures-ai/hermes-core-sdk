@@ -61,6 +61,10 @@ interface Phone {
     countryCode: string;
     phoneNumber: string;
 }
+export interface UpcomingCall {
+    willCall: boolean;
+    delayMinutes?: number;
+}
 export interface Lead {
     id: string;
     tenantId: string;
@@ -80,6 +84,7 @@ export interface Lead {
     assignedAt: string | null;
     createdAt: string;
     updatedAt: string;
+    autoCall?: UpcomingCall;
 }
 export interface LeadField {
     id: string;
