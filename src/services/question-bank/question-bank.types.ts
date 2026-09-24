@@ -16,6 +16,25 @@ export interface ExtractedQuestionOption {
   text: string;
 }
 
+// One atomic "do"/"don't" row from a source document's explicit Do's/Don'ts
+// table -- extracted verbatim by urag-indexing, never synthesized. Only
+// present when the source document actually has this table; a plain prose
+// idealAnswer/evaluationCriteria document leaves these absent, not empty.
+export interface ExpectedCriterion {
+  id: string;
+  text: string;
+}
+
+export interface ProhibitedCriterion {
+  id: string;
+  text: string;
+  // The document's own category label, normalized to snake_case (e.g.
+  // "red_flag", "conceptual_confusion") -- not a closed union, since a future
+  // source document may introduce its own category wording.
+  type: string;
+  penalty: number;
+}
+
 export interface ExtractedQuestionFieldDetails {
   phase: QuestionPhase;
   block: number;
@@ -35,6 +54,10 @@ export interface ExtractedQuestionFieldDetails {
   // to a preview URL on demand via urag-indexing's getFileContentUrl(fileKey)
   // -- never persist the presigned download_url itself, since that expires.
   sourceFileKey?: string | null;
+  // Populated ONLY when the source document had an explicit Do's/Don'ts
+  // table for this question; absent otherwise.
+  expectedCriteria?: ExpectedCriterion[] | null;
+  prohibitedCriteria?: ProhibitedCriterion[] | null;
 }
 
 export interface ExtractedQuestionField {

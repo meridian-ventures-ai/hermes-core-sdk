@@ -8,6 +8,16 @@ export interface ExtractedQuestionOption {
     key: string;
     text: string;
 }
+export interface ExpectedCriterion {
+    id: string;
+    text: string;
+}
+export interface ProhibitedCriterion {
+    id: string;
+    text: string;
+    type: string;
+    penalty: number;
+}
 export interface ExtractedQuestionFieldDetails {
     phase: QuestionPhase;
     block: number;
@@ -22,6 +32,8 @@ export interface ExtractedQuestionFieldDetails {
     correctOption?: string | null;
     passingScore?: string | null;
     sourceFileKey?: string | null;
+    expectedCriteria?: ExpectedCriterion[] | null;
+    prohibitedCriteria?: ProhibitedCriterion[] | null;
 }
 export interface ExtractedQuestionField {
     fieldName: string;
