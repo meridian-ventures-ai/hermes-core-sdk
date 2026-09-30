@@ -8,6 +8,8 @@ export declare class LeadService {
     getLeadFieldValues(field: string): Promise<string[]>;
     /** Distinct lead sources (created_from) with counts, for the source filter. */
     getLeadSources(): Promise<LeadSource[]>;
+    /** Distinct clicked-link labels for the tenant, for the "Link clicked" filter. */
+    getLinkLabels(): Promise<string[]>;
     getLead(leadId: string): Promise<Lead>;
     getLeadJourney(leadId: string): Promise<LeadMapResponse>;
     getLeadFields(): Promise<LeadField[]>;
