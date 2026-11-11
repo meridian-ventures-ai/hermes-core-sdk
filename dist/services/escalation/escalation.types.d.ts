@@ -5,9 +5,19 @@ export interface EscalationListItem {
     leadId: string | null;
     leadFirstName: string | null;
     leadLastName: string | null;
-    chatId: string;
+    /** The lead's phone (`{ countryCode, phoneNumber }`), when the lead has one. */
+    leadPhone?: {
+        countryCode?: string;
+        phoneNumber?: string;
+    } | null;
+    /** Null for call escalations, which point at a call log instead. */
+    chatId: string | null;
+    /** Set for call escalations (e.g. MCF Portugal post-call tags). */
+    callLogId?: string | null;
     source: string;
     causeForEscalation: string;
+    /** For call escalations: "interest" | "issue" | "interest_issue". */
+    failureCategory: string | null;
     status: EscalationStatus;
     urgency: number | null;
     claimedBy: number | null;
@@ -16,7 +26,6 @@ export interface EscalationListItem {
 }
 export interface EscalationDetail extends EscalationListItem {
     agentResponse: string | null;
-    failureCategory: string | null;
     messageId: string | null;
     claimedAt: string | null;
     resolvedAt: string | null;
@@ -29,6 +38,20 @@ export interface GetEscalationsParams {
     limit?: number;
     status?: EscalationStatus;
     claimedBy?: number;
+    /** Comma-separated failure categories, e.g. "interest,interest_issue". */
+    failureCategory?: string;
+    /** "urgency" puts the most urgent first, oldest first within a level. Default: newest first. */
+    sortBy?: "created_at" | "urgency";
+}
+/** Body for an MCF Portugal call tagged Interest and/or Issue. Service API key only. */
+export interface CreateCallEscalationPayload {
+    leadId: string;
+    callLogId: string;
+    interest: boolean;
+    issue: {
+        summary?: string | null;
+        category?: string | null;
+    } | null;
 }
 export interface GetEscalationsResponse {
     items: EscalationListItem[];
