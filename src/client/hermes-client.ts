@@ -14,6 +14,7 @@ import { EventsService } from "../services/events/events.service";
 import { ScoringService } from "../services/scoring/scoring.service";
 import { ChangeRequestService } from "../services/change-request/change-request.service";
 import { AgenticService } from "../services/agentic/agentic.service";
+import { MemoryService } from "../services/memory/memory.service";
 import { QuestionBankService } from "../services/question-bank/question-bank.service";
 
 export class HermesSDKError extends Error {
@@ -47,6 +48,7 @@ export class HermesClient {
     public changeRequests: ChangeRequestService;
     public scoring: ScoringService;
     public agentic: AgenticService;
+    public memory: MemoryService;
     public questionBank: QuestionBankService;
 
     constructor(config: SDKConfig) {
@@ -82,6 +84,7 @@ export class HermesClient {
         this.changeRequests = new ChangeRequestService(this.httpClient);
         this.scoring = new ScoringService(this.httpClient);
         this.agentic = new AgenticService(config);
+        this.memory = new MemoryService(this.httpClient);
         this.questionBank = new QuestionBankService(this.httpClient);
     }
 

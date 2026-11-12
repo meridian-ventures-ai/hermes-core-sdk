@@ -13,6 +13,7 @@ import { EventsService } from "../services/events/events.service";
 import { ScoringService } from "../services/scoring/scoring.service";
 import { ChangeRequestService } from "../services/change-request/change-request.service";
 import { AgenticService } from "../services/agentic/agentic.service";
+import { MemoryService } from "../services/memory/memory.service";
 import { QuestionBankService } from "../services/question-bank/question-bank.service";
 export declare class HermesSDKError extends Error {
     statusCode?: number | undefined;
@@ -39,6 +40,7 @@ export declare class HermesClient {
     changeRequests: ChangeRequestService;
     scoring: ScoringService;
     agentic: AgenticService;
+    memory: MemoryService;
     questionBank: QuestionBankService;
     constructor(config: SDKConfig);
     /**

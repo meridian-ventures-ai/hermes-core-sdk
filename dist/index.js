@@ -25,6 +25,7 @@ __exportStar(require("./services/escalation/escalation.types"), exports);
 __exportStar(require("./services/calls/call.types"), exports);
 __exportStar(require("./services/phoenix-analytics/phoenix-analytics.types"), exports);
 __exportStar(require("./services/events/events.types"), exports);
+__exportStar(require("./services/memory/memory.types"), exports);
 __exportStar(require("./services/scoring/scoring.types"), exports);
 __exportStar(require("./services/change-request/change-request.types"), exports);
 // Summary types moved to chat.types.ts - kept for backward compatibility
