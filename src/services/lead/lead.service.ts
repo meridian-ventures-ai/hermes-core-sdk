@@ -45,6 +45,13 @@ export class LeadService {
         return response.data;
     }
 
+    /** Distinct clicked-link labels for the tenant, for the "Link clicked" filter. */
+    async getLinkLabels(): Promise<string[]> {
+        const response = await this.httpClient.get("/api/v1/leads/link-labels");
+        const data = response.data;
+        return Array.isArray(data) ? data : [];
+    }
+
     async getLead(leadId: string): Promise<Lead> {
         const response = await this.httpClient.get(`/api/v1/leads/${leadId}`);
         return response.data;

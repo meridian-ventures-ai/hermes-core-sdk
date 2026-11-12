@@ -36,6 +36,8 @@ export interface GetLeadsParams {
     hideSources?: string;
     /** Comma-separated created_from values to show exclusively (imported-only view). */
     sources?: string;
+    /** Only leads with a recorded click on this link label (see /api/v1/leads/link-labels). */
+    clickedLinkLabel?: string;
     /** Per-column filters, ANDed together. Serialized to JSON on the wire. */
     filters?: LeadColumnFilter[];
 }
@@ -98,6 +100,9 @@ export interface Lead {
     createdAt: string;
     updatedAt: string;
     autoCall?: UpcomingCall;
+    /** Click rollup for the filtered link; only set when `clickedLinkLabel` was passed. */
+    linkClicks?: number;
+    lastLinkClickAt?: string | null;
 }
 
 export interface LeadField {

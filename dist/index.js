@@ -34,3 +34,4 @@ __exportStar(require("./services/whatsapp-analytics/analytics.types"), exports);
 __exportStar(require("./services/agentic/agentic.types"), exports);
 __exportStar(require("./services/link-analytics/link-analytics.types"), exports);
 __exportStar(require("./services/chat-link-analytics/chat-link-analytics.types"), exports);
+__exportStar(require("./services/question-bank/question-bank.types"), exports);
